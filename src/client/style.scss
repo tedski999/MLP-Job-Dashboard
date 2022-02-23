@@ -1,0 +1,21 @@
+$myCoolColor: grey;
+$myOtherColor: #80ffff;
+
+.CoolComponentStyling {
+
+	display: inline-block;
+	padding: 0 20px;
+	margin: 10px;
+	text-align: center;
+	background: $myCoolColor;
+
+	h3 {
+		font-family: sans;
+		color: $myOtherColor;
+	}
+
+	img {
+		width: 100px;
+		margin-bottom: 20px;
+	}
+}

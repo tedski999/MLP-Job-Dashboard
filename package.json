@@ -1,0 +1,71 @@
+{
+	"name": "mlp-job-dashboard",
+	"version": "0.0.1",
+	"description": "A web-based dashboard application for the monitoring and alerting of automation jobs anomalies",
+	"main": "./src/server/index.js",
+	"scripts": {
+		"dev": "run-p dev:*",
+		"dev:build": "webpack --watch --progress --mode development",
+		"dev:serve": "nodemon --quiet --watch ./src/server --exec run-s lint:server serve",
+
+		"lint": "run-s lint:*",
+		"lint:client": "eslint ./src/client",
+		"lint:server": "eslint ./src/server",
+
+		"prod": "run-s lint build serve",
+		"build": "webpack --progress --mode production",
+		"serve": "node ./src/server/index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tedski999/MLP-Job-Dashboard.git"
+	},
+	"author": "Creagh Duggan, Alanna Fusciardi Wallace, Ted Johnson, Jiss Joseph, Aoife Khan",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/tedski999/MLP-Job-Dashboard/issues"
+	},
+	"homepage": "https://github.com/tedski999/MLP-Job-Dashboard#readme",
+	"dependencies": {
+		"express": "^4.17.3",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.17.5",
+		"@babel/preset-env": "^7.16.11",
+		"@babel/preset-react": "^7.16.7",
+		"babel-loader": "^8.2.3",
+		"css-loader": "^6.6.0",
+		"eslint": "^8.9.0",
+		"eslint-plugin-react": "^7.28.0",
+		"html-webpack-plugin": "^5.5.0",
+		"nodemon": "^2.0.15",
+		"npm-run-all": "^4.1.5",
+		"postcss": "^8.4.6",
+		"postcss-loader": "^6.2.1",
+		"sass": "^1.49.8",
+		"sass-loader": "^12.6.0",
+		"style-loader": "^3.3.1",
+		"webpack": "^5.69.1",
+		"webpack-cli": "^4.9.2"
+	},
+	"babel": {
+		"presets": [
+			"@babel/preset-env",
+			"@babel/preset-react"
+		]
+	},
+	"eslintConfig": {
+		"root": true,
+		"extends": [
+			"eslint:recommended"
+		],
+		"rules": {
+			"indent": [ "error", "tab" ],
+			"linebreak-style": [ "error", "unix" ],
+			"quotes": [ "error", "double" ],
+			"semi": [ "error", "always" ]
+		}
+	}
+}
