@@ -1,5 +1,7 @@
 # MLP Job Anomaly Dashboard
 
+![GitHub Build Workflow](https://github.com/tedski999/MLP-Job-Dashboard/actions/workflows/build.yml/badge.svg)
+
 A web-based dashboard application for the monitoring and alerting of automation jobs anomalies.
 
 Requirements: `node.js` and `npm`.
