@@ -31,3 +31,5 @@ jobs:
       run: npm run lint
     - name: Compile webpack
       run: npm run build
+    - name: Build Docker image
+      run: npm run docker:build
