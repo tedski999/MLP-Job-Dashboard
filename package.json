@@ -12,6 +12,10 @@
 		"lint:client": "eslint ./src/client",
 		"lint:server": "eslint ./src/server",
 
+		"docker": "run-s docker:*",
+		"docker:build": "docker build -t mlp-job-dashboard:latest --build-arg PORT=80 .",
+		"docker:run": "docker run --name mlp-job-dashboard --init --rm -p 80:80 -it mlp-job-dashboard:latest",
+
 		"prod": "run-s lint build serve",
 		"build": "webpack --progress --mode production",
 		"serve": "node ./src/server/index.js"
