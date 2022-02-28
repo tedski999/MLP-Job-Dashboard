@@ -17,3 +17,8 @@ You should use this instead of the production server when developing.
 - Open `http://localhost:8080/` in your browser.
 - Change (and save) either the client or server code.
 - Refresh your browser to see the changes.
+
+You can deploy this project as a Docker container with the provided scripts.
+This additionally requires that you have `docker` installed and running.
+- Build and run the Docker container with `npm run docker`.
+- Open `http://localhost/` in your browser.
