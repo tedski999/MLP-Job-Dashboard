@@ -25,7 +25,7 @@
 		"url": "git+https://github.com/tedski999/MLP-Job-Dashboard.git"
 	},
 	"author": "Creagh Duggan, Alanna Fusciardi Wallace, Ted Johnson, Jiss Joseph, Aoife Khan",
-	"license": "ISC",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/tedski999/MLP-Job-Dashboard/issues"
 	},
