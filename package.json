@@ -8,6 +8,11 @@
 		"dev:build": "webpack --watch --progress --mode development",
 		"dev:serve": "nodemon --quiet --watch ./src/server --exec run-s lint:server serve",
 
+		"dev_db": "docker start --attach mlp-job-dashboard-db || docker run --name mlp-job-dashboard-db --env MYSQL_ROOT_PASSWORD=dev -p 3306:3306 mariadb:latest",
+		"dev_db:init": "node ./src/tools/init_dev_db.js",
+		"dev_db:stop": "docker stop mlp-job-dashboard-db",
+		"dev_db:delete": "docker rm mlp-job-dashboard-db",
+
 		"lint": "run-s lint:*",
 		"lint:client": "eslint ./src/client",
 		"lint:server": "eslint ./src/server",
@@ -32,6 +37,7 @@
 	"homepage": "https://github.com/tedski999/MLP-Job-Dashboard#readme",
 	"dependencies": {
 		"express": "^4.17.3",
+		"mysql": "^2.18.1",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2"
 	},
