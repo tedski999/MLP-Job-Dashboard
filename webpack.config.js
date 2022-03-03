@@ -58,7 +58,7 @@ module.exports = (env, argv) => {
 			{
 				apply: (compiler) => {
 					compiler.hooks.watchRun.tap("RunClientLinter", () => {
-						const child = child_process.spawn("npm", ["run", "lint:client"]);
+						const child = child_process.spawn("npm", ["run", "lint:client"], { shell: true });
 						child.stdout.on("data", data => { process.stdout.write(data); });
 						child.stderr.on("data", data => { process.stderr.write(data); });
 					});
