@@ -7,20 +7,16 @@
 		"dev": "run-p dev:*",
 		"dev:build": "webpack --watch --progress --mode development",
 		"dev:serve": "nodemon --quiet --watch ./src/server --exec run-s lint:server serve",
-
 		"dev_db": "docker start --attach mlp-job-dashboard-db || docker run --name mlp-job-dashboard-db --env MYSQL_ROOT_PASSWORD=dev -p 3306:3306 mariadb:latest",
 		"dev_db:init": "node ./src/tools/init_dev_db.js",
 		"dev_db:stop": "docker stop mlp-job-dashboard-db",
 		"dev_db:delete": "docker rm mlp-job-dashboard-db",
-
 		"lint": "run-s lint:*",
 		"lint:client": "eslint ./src/client",
 		"lint:server": "eslint ./src/server",
-
 		"docker": "run-s docker:*",
 		"docker:build": "docker build -t mlp-job-dashboard:latest --build-arg PORT=80 .",
 		"docker:run": "docker run --name mlp-job-dashboard --init --rm -p 80:80 -it mlp-job-dashboard:latest",
-
 		"prod": "run-s lint build serve",
 		"build": "webpack --progress --mode production",
 		"serve": "node ./src/server/index.js"
@@ -39,7 +35,8 @@
 		"express": "^4.17.3",
 		"mysql": "^2.18.1",
 		"react": "^17.0.2",
-		"react-dom": "^17.0.2"
+		"react-dom": "^17.0.2",
+		"react-router-dom": "^6.2.2"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.17.5",
@@ -80,10 +77,22 @@
 			"sourceType": "module"
 		},
 		"rules": {
-			"indent": [ "error", "tab" ],
-			"linebreak-style": [ "error", "unix" ],
-			"quotes": [ "error", "double" ],
-			"semi": [ "error", "always" ]
+			"indent": [
+				"error",
+				"tab"
+			],
+			"linebreak-style": [
+				"error",
+				"unix"
+			],
+			"quotes": [
+				"error",
+				"double"
+			],
+			"semi": [
+				"error",
+				"always"
+			]
 		}
 	}
 }
