@@ -12,8 +12,8 @@ import "./style.scss";
 //import MyCoolComponent from "./MyCoolComponent/TestComponent";
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import Dashboard from "./components/Dashboard";
-import JobsList from "./components/JobsList";
+import Dashboard from "./Components/Dashboard";
+import JobsList from "./Components/JobsList";
 
 
 ReactDOM.render(
