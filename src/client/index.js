@@ -9,11 +9,12 @@ import "./style.scss";
 //import "./index.css";
 //import App from "./App";
 
-//import MyCoolComponent from "./MyCoolComponent/TestComponent";
+import MyCoolComponent from "./MyCoolComponent/TestComponent";
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Dashboard from "./Components/Dashboard";
 import JobsList from "./Components/JobsList";
+import LineGraph from "./Components/LineGraph";
 
 
 ReactDOM.render(
@@ -21,6 +22,7 @@ ReactDOM.render(
 		<Routes>
 			<Route path="/" element={<Dashboard />}/>
 			<Route path="/jobsList" element={<JobsList />}/>
+			<Route path="/line-graph" element={<LineGraph/>}/>
 		</Routes>
 	</Router>,
 	document.getElementById("root")
