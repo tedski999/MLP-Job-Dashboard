@@ -9,13 +9,15 @@ import "./style.scss";
 //import "./index.css";
 //import App from "./App";
 
-import MyCoolComponent from "./MyCoolComponent/TestComponent";
+//import MyCoolComponent from "./MyCoolComponent/TestComponent";
 
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Dashboard from "./Components/Dashboard";
 import JobsList from "./Components/JobsList";
 import LineGraph from "./Components/LineGraph";
 
+const example_options = {xaxis: [0, 1, 2, 3, 4, 5, 6]};
+const example_series = {name: "example", data: [2, 4, 9, 10, 1, 5, 7]};
 
 
 ReactDOM.render(
@@ -23,7 +25,7 @@ ReactDOM.render(
 		<Routes>
 			<Route path="/" element={<Dashboard />}/>
 			<Route path="/jobsList" element={<JobsList />}/>
-			<Route path="/line-graph" element={<LineGraph data='Hello!' />}/>
+			<Route path="/line" element={<LineGraph />}/>
 		</Routes>
 	</Router>,
 	document.getElementById("root")
