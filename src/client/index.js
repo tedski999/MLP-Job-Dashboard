@@ -17,12 +17,13 @@ import JobsList from "./Components/JobsList";
 import LineGraph from "./Components/LineGraph";
 
 
+
 ReactDOM.render(
 	<Router>
 		<Routes>
 			<Route path="/" element={<Dashboard />}/>
 			<Route path="/jobsList" element={<JobsList />}/>
-			<Route path="/line-graph" element={<LineGraph/>}/>
+			<Route path="/line-graph" element={<LineGraph data='Hello!' />}/>
 		</Routes>
 	</Router>,
 	document.getElementById("root")
