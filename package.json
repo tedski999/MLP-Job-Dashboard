@@ -6,11 +6,12 @@
 	"scripts": {
 		"dev": "run-p dev:*",
 		"dev:build": "webpack --watch --progress --mode development",
-		"dev:serve": "nodemon --quiet --watch ./src/server --exec run-s lint:server serve",
+		"dev:serve": "nodemon --quiet --watch ./src/server --exec run-s lint:server test serve",
 		"dev_db": "docker start --attach mlp-job-dashboard-db || docker run --name mlp-job-dashboard-db --env MYSQL_ROOT_PASSWORD=dev -p 3306:3306 mariadb:latest",
 		"dev_db:init": "node ./src/tools/init_dev_db.js",
 		"dev_db:stop": "docker stop mlp-job-dashboard-db",
 		"dev_db:delete": "docker rm mlp-job-dashboard-db",
+		"test": "jest",
 		"lint": "run-s lint:*",
 		"lint:client": "eslint ./src/client",
 		"lint:server": "eslint ./src/server",
@@ -45,29 +46,37 @@
 		"babel-loader": "^8.2.3",
 		"css-loader": "^6.6.0",
 		"eslint": "^8.9.0",
+		"eslint-plugin-jest": "^26.1.1",
 		"eslint-plugin-react": "^7.28.0",
 		"html-webpack-plugin": "^5.5.0",
+		"jest": "^27.5.1",
 		"nodemon": "^2.0.15",
 		"npm-run-all": "^4.1.5",
 		"postcss": "^8.4.6",
 		"postcss-loader": "^6.2.1",
+		"regenerator-runtime": "^0.13.9",
 		"sass": "^1.49.8",
 		"sass-loader": "^12.6.0",
 		"style-loader": "^3.3.1",
+		"supertest": "^6.2.2",
 		"webpack": "^5.69.1",
 		"webpack-cli": "^4.9.2"
 	},
 	"babel": {
 		"presets": [
-			"@babel/preset-env",
+			[ "@babel/preset-env", { "targets": { "node": "current" } } ],
 			"@babel/preset-react"
 		]
 	},
 	"eslintConfig": {
 		"root": true,
+		"plugins": [
+			"jest"
+		],
 		"env": {
 			"es2021": true,
-			"node": true
+			"node": true,
+			"jest/globals": true
 		},
 		"extends": [
 			"eslint:recommended"
