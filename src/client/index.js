@@ -14,6 +14,7 @@ import "./style.scss";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Dashboard from "./Components/Dashboard";
 import JobsList from "./Components/JobsList";
+import Job from "./Components/Job";
 
 
 ReactDOM.render(
@@ -21,6 +22,7 @@ ReactDOM.render(
 		<Routes>
 			<Route path="/" element={<Dashboard />}/>
 			<Route path="/jobsList" element={<JobsList />}/>
+			<Route path="/job" element={<Job />}/>
 		</Routes>
 	</Router>,
 	document.getElementById("root")
