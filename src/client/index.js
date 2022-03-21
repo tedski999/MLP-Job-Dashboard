@@ -16,23 +16,22 @@ import Dashboard from "./Components/Dashboard";
 import JobsList from "./Components/JobsList";
 import LineGraph from "./Components/LineGraph";
 
-const example_options = {xaxis: [0, 1, 2, 3, 4, 5, 6]};
-const example_series = {name: "example", data: [2, 4, 9, 10, 1, 5, 7]};
+
 
 const options = {
-    chart: {
-        id: "this is the id"
-    },
-    xaxis: {
-        categories: [1, 2, 3, 4, 5, 6]
-    }
+	chart: {
+		id: "this is the id"
+	},
+	xaxis: {
+		categories: [1, 2, 3, 4, 5, 6]
+	}
 };
 
 const series = [
-    {
-        name: "example",
-        data: [10, 4, 18, 23, 82, 51]
-    }
+	{
+		name: "example",
+		data: [10, 4, 18, 23, 82, 51]
+	}
 ];
 
 ReactDOM.render(
