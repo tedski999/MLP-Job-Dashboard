@@ -20,5 +20,6 @@ COPY --from=build /usr/src/app/dist ./dist
 COPY ./src/server ./src/server
 RUN find ./src -type d -exec chmod 755 {} \;
 RUN find ./src -type f -exec chmod 644 {} \;
-ENTRYPOINT ["npm", "run", "serve"]
+ENTRYPOINT ["npm", "run"]
+CMD ["serve"]
 USER nobody
