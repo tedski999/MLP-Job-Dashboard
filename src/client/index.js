@@ -17,8 +17,7 @@ import JobsList from "./Components/JobsList";
 import Job from "./Components/Job";
 import LineGraph from "./Components/LineGraph";
 
-const example_options = {xaxis: [0, 1, 2, 3, 4, 5, 6]};
-const example_series = {name: "example", data: [2, 4, 9, 10, 1, 5, 7]};
+
 
 const options = {
 	chart: {
