@@ -15,5 +15,5 @@ function NavigationBar() {
 			</div>
 		</div>
 	);
-}
+}   
 export default NavigationBar;
