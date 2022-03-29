@@ -15,6 +15,7 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Dashboard from "./Components/Dashboard";
 import JobsList from "./Components/JobsList";
 import LineGraph from "./Components/LineGraph";
+import NavigationBar from "./Components/NavigationBar";
 
 
 
@@ -36,6 +37,7 @@ const series = [
 
 ReactDOM.render(
 	<Router>
+		<NavigationBar />
 		<Routes>
 			<Route path="/" element={<Dashboard />}/>
 			<Route path="/jobsList" element={<JobsList />}/>
