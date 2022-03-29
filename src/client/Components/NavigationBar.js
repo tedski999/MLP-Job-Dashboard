@@ -10,7 +10,7 @@ function NavigationBar() {
 					<NavLink to="/" className={navInfo => navInfo.isActive? "active" : ""}>Home </ NavLink>
 					<NavLink to="/jobsList" className="button">Jobs List </NavLink>
 					<NavLink to="/line" className="navbar-btn">Line Graph </NavLink>
-					<button onClick={() => navigate(-1)} title="Go previous page">Back </button>
+					<button onClick={() => navigate(-1)} title="Go previous page" className="previous round">Back </button>
 				</div>
 			</div>
 		</div>
