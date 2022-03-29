@@ -1,10 +1,17 @@
 const mariadb = require("mariadb");
+let pool;
 
-const pool = mariadb.createPool({
-	host: "127.0.0.1", port: "3306",
-	user: "root", password: "dev",
-	database: "dev"
-});
+function init() {
+	pool = mariadb.createPool({
+		host: "127.0.0.1", port: "3306",
+		user: "root", password: "dev",
+		database: "dev"
+	});
+}
+
+function stop() {
+	pool.end();
+}
 
 function connect() {
 	return new Promise((resolve, reject) => {
@@ -25,4 +32,4 @@ async function query(q) {
 	}
 }
 
-module.exports = { connect, query };
+module.exports = { init, stop, connect, query };
