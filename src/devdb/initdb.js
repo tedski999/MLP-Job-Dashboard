@@ -2,8 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const mysql = require("mysql");
 
-const jobStatusFile = path.resolve(process.argv[2] || "job_status.csv");
-const autoQueueFile = path.resolve(process.argv[3] || "auto_queue.csv");
+const jobStatusFile = process.argv[2] || "job_status.csv";
+const autoQueueFile = process.argv[3] || "auto_queue.csv";
 try { fs.statSync(jobStatusFile); } catch (err) { console.error("Unable to load job status data from", jobStatusFile); process.exit(1); }
 try { fs.statSync(autoQueueFile); } catch (err) { console.error("Unable to load auto queue data from", autoQueueFile); process.exit(1); }
 console.log("Job status file:", jobStatusFile);
