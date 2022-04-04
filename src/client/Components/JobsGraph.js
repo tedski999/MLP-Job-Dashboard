@@ -65,6 +65,9 @@ class JobsGraph extends React.Component {
 	async generateGraph() {
 		this.setState({ loading: true });
 
+		const after = new Date(this.state.filters.after);
+		const before = new Date(this.state.filters.before);
+
 		// Setup blank graph
 		this.freqCounts = {};
 		this.setState({ series: [{ name: "Jobs", data: [] }] });
@@ -73,11 +76,14 @@ class JobsGraph extends React.Component {
 				...prev.options,
 				xaxis: {
 					...prev.options.xaxis,
-					min: new Date(prev.filters.after).getTime(),
-					max: new Date(prev.filters.before).getTime()
+					min: after.getTime(),
+					max: before.getTime()
 				}
 			}
 		}));
+		for (const dt = new Date(after); dt <= before; dt.setHours(dt.getHours() + 1)) {
+			this.freqCounts[dt] = 0;
+		}
 
 		// Count frequencies of jobs as they're streamed in
 		await api.jobs("created_on", this.state.filters.after, this.state.filters.before, this.state.filters.group, this.state.filters.topic, this.state.filters.status, 0, jobs => {
