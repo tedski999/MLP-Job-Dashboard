@@ -26,7 +26,8 @@ class JobsList extends React.Component {
 				after: twoMonthsAgo.toISOString().substring(0, 10),
 				before: now.toISOString().substring(0, 10),
 				group: "",
-				topic: ""
+				topic: "",
+				status: ""
 			},
 		};
 	}
@@ -76,6 +77,7 @@ class JobsList extends React.Component {
 			this.state.filters.before,
 			this.state.filters.group,
 			this.state.filters.topic,
+			this.state.filters.status,
 			100, this.lastJobID);
 
 		this.setState({ jobs: [...this.state.jobs, ...newJobs] });
@@ -113,6 +115,12 @@ class JobsList extends React.Component {
 				<input
 					name="topic" type="text"
 					value={this.state.filters.topic}
+					onChange={this.handleFormInput}
+				/>
+				<label> Status: </label>
+				<input
+					name="status" type="text"
+					value={this.state.filters.status}
 					onChange={this.handleFormInput}
 				/>
 				<br />

@@ -45,12 +45,14 @@ router.get("/jobs", (req, res) => {
 	const limit = req.query.l || 0;
 	const page = req.query.p || -1;
 	const seek = req.query.s || "";
+	const status = req.query.r || "";
 	let query = `
 	SELECT ${columns} FROM auto_queue
 	WHERE created_on BETWEEN "${after}" AND "${before}"
 		${seek !== "" ? `AND job_id < "${seek}"` : ""}
 		${topic !== "" ? `AND job_topic LIKE "%${topic}%"` : ""}
 		${group !== "" ? `AND group_name LIKE "%${group}%"` : ""}
+		${status !== "" ? `AND status_id IN (${status})` : ""}
 	ORDER BY job_id DESC`;
 	if (limit > 0) {
 		query += (page >= 0)

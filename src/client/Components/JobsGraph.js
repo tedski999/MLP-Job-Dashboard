@@ -25,7 +25,10 @@ class JobsGraph extends React.Component {
 			series: [],
 			filters: {
 				after: twoMonthsAgo.toISOString().substring(0, 10),
-				before: now.toISOString().substring(0, 10)
+				before: now.toISOString().substring(0, 10),
+				group: "",
+				topic: "",
+				status: ""
 			},
 			options: {
 				chart: {
@@ -77,7 +80,7 @@ class JobsGraph extends React.Component {
 		}));
 
 		// Count frequencies of jobs as they're streamed in
-		await api.jobs("created_on", this.state.filters.after, this.state.filters.before, "", "", 0, jobs => {
+		await api.jobs("created_on", this.state.filters.after, this.state.filters.before, this.state.filters.group, this.state.filters.topic, this.state.filters.status, 0, jobs => {
 			jobs.forEach(job => {
 				const dt = new Date(job.created_on);
 				dt.setMinutes(0, 0, 0);
@@ -107,6 +110,24 @@ class JobsGraph extends React.Component {
 				<input
 					name="before" type="date"
 					value={this.state.filters.before}
+					onChange={this.handleFormInput}
+				/>
+				<label> Group: </label>
+				<input
+					name="group" type="text"
+					value={this.state.filters.group}
+					onChange={this.handleFormInput}
+				/>
+				<label> Topic: </label>
+				<input
+					name="topic" type="text"
+					value={this.state.filters.topic}
+					onChange={this.handleFormInput}
+				/>
+				<label> Status: </label>
+				<input
+					name="status" type="text"
+					value={this.state.filters.status}
 					onChange={this.handleFormInput}
 				/>
 				<br />
