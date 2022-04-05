@@ -249,7 +249,7 @@ export default function EnhancedTable() {
 	// 	setSelected(newSelected);
 	// };
 
-	const handleChangePage = (event, newPage) => {
+	const handleChangePage = (newPage) => {
 		setPage(newPage);
 	};
 
@@ -269,14 +269,14 @@ export default function EnhancedTable() {
 		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
 	return (
-		<Box sx={{ width: '100%' }}>
-			<Paper sx={{ width: '100%', mb: 2 }}>
+		<Box sx={{ width: "100%" }}>
+			<Paper sx={{ width: "100%", mb: 2 }}>
 				<EnhancedTableToolbar numSelected={selected.length} />
 				<TableContainer>
 					<Table
 						sx={{ minWidth: 750 }}
 						aria-labelledby="tableTitle"
-						size={dense ? 'small' : 'medium'}
+						size={dense ? "small" : "medium"}
 					>
 						<EnhancedTableHead
 							numSelected={selected.length}
@@ -320,7 +320,7 @@ export default function EnhancedTable() {
 												scope="row"
 												padding="none"
 											>
-											<Link to="/Job">{row.name}</Link>
+												<Link to="/Job">{row.name}</Link>
 											</TableCell>
 											<TableCell align="right">{row.topic}</TableCell>
 											<TableCell align="right">{row.jobID}</TableCell>
