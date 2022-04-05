@@ -70,33 +70,33 @@ function stableSort(array, comparator) {
 
 const headCells = [
 	{
-		id: 'name',
+		id: "name",
 		numeric: false,
 		disablePadding: true,
-		label: 'Job Name',
+		label: "Job Name",
 	},
 	{
-		id: 'topic',
+		id: "topic",
 		numeric: true,
 		disablePadding: false,
-		label: 'Topic',
+		label: "Topic",
 	},
 	{
-		id: 'jobID',
+		id: "jobID",
 		numeric: true,
 		disablePadding: false,
-		label: 'Job ID',
+		label: "Job ID",
 	},
 	{
-		id: 'lastUpdated',
+		id: "lastUpdated",
 		numeric: true,
 		disablePadding: false,
-		label: 'Last Updated (Mins)',
+		label: "Last Updated (Mins)",
 	},
 ];
 
 function EnhancedTableHead(props) {
-	const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
+	const {order, orderBy,onRequestSort } =
 		props;
 	const createSortHandler = (property) => (event) => {
 		onRequestSort(event, property);
@@ -119,19 +119,19 @@ function EnhancedTableHead(props) {
 				{headCells.map((headCell) => (
 					<TableCell
 						key={headCell.id}
-						align={headCell.numeric ? 'right' : 'left'}
-						padding={headCell.disablePadding ? 'none' : 'normal'}
+						align={headCell.numeric ? "right" : "left"}
+						padding={headCell.disablePadding ? "none" : "normal"}
 						sortDirection={orderBy === headCell.id ? order : false}
 					>
 						<TableSortLabel
 							active={orderBy === headCell.id}
-							direction={orderBy === headCell.id ? order : 'asc'}
+							direction={orderBy === headCell.id ? order : "asc"}
 							onClick={createSortHandler(headCell.id)}
 						>
 							{headCell.label}
 							{orderBy === headCell.id ? (
 								<Box component="span" sx={visuallyHidden}>
-									{order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+									{order === "desc" ? "sorted descending" : "sorted ascending"}
 								</Box>
 							) : null}
 						</TableSortLabel>
@@ -146,7 +146,7 @@ EnhancedTableHead.propTypes = {
 	numSelected: PropTypes.number.isRequired,
 	onRequestSort: PropTypes.func.isRequired,
 	onSelectAllClick: PropTypes.func.isRequired,
-	order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+	order: PropTypes.oneOf(["asc", "desc"]).isRequired,
 	orderBy: PropTypes.string.isRequired,
 	rowCount: PropTypes.number.isRequired,
 };
@@ -167,7 +167,7 @@ const EnhancedTableToolbar = (props) => {
 		>
 			{numSelected > 0 ? (
 				<Typography
-					sx={{ flex: '1 1 100%' }}
+					sx={{ flex: "1 1 100%" }}
 					color="inherit"
 					variant="subtitle1"
 					component="div"
@@ -176,7 +176,7 @@ const EnhancedTableToolbar = (props) => {
 				</Typography>
 			) : (
 				<Typography
-					sx={{ flex: '1 1 100%' }}
+					sx={{ flex: "1 1 100%"}}
 					variant="h6"
 					id="tableTitle"
 					component="div"
@@ -207,16 +207,16 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function EnhancedTable() {
-	const [order, setOrder] = React.useState('asc');
-	const [orderBy, setOrderBy] = React.useState('topic');
+	const [order, setOrder] = React.useState("asc");
+	const [orderBy, setOrderBy] = React.useState("topic");
 	const [selected, setSelected] = React.useState([]);
 	const [page, setPage] = React.useState(0);
 	const [dense, setDense] = React.useState(false);
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
 	const handleRequestSort = (event, property) => {
-		const isAsc = orderBy === property && order === 'asc';
-		setOrder(isAsc ? 'desc' : 'asc');
+		const isAsc = orderBy === property && order === "asc";
+		setOrder(isAsc ? "desc" : "asc");
 		setOrderBy(property);
 	};
 
