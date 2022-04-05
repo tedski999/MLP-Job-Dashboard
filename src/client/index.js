@@ -17,7 +17,7 @@ import JobsList from "./Components/JobsList";
 import JobsGraph from "./Components/JobsGraph";
 import NavigationBar from "./Components/NavigationBar";
 import Job from "./Components/Job";
-import EnhancedTable from "./Components/Job";
+import EnhancedTable from "./Components/EnhancedTabled";
 ReactDOM.render(
 	<Router>
 		<NavigationBar />

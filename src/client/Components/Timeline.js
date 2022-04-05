@@ -1,15 +1,15 @@
-import * as React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
+import * as React from "react";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Divider from "@mui/material/Divider";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
 
 export default function Timeline() {
 	return (
-		<List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+		<List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
 			<ListItem alignItems="flex-start">
 				<ListItemAvatar>
 					<Avatar alt="A" src="/static/images/avatar/1.jpg" />
@@ -19,7 +19,7 @@ export default function Timeline() {
 					secondary={
 						<React.Fragment>
 							<Typography
-								sx={{ display: 'inline' }}
+								sx={{ display: "inline" }}
 								component="span"
 								variant="body2"
 								color="text.primary"
@@ -40,7 +40,7 @@ export default function Timeline() {
 					secondary={
 						<React.Fragment>
 							<Typography
-								sx={{ display: 'inline' }}
+								sx={{ display: "inline" }}
 								component="span"
 								variant="body2"
 								color="text.primary"
@@ -61,13 +61,13 @@ export default function Timeline() {
 					secondary={
 						<React.Fragment>
 							<Typography
-								sx={{ display: 'inline' }}
+								sx={{ display: "inline" }}
 								component="span"
 								variant="body2"
 								color="text.primary"
 							>
 							</Typography>
-							{'2 Hours Ago'}
+							{"2 Hours Ago"}
 						</React.Fragment>
 					}
 				/>
