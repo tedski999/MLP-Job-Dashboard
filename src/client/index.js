@@ -16,14 +16,17 @@ import Dashboard from "./Components/Dashboard";
 import JobsList from "./Components/JobsList";
 import JobsGraph from "./Components/JobsGraph";
 import NavigationBar from "./Components/NavigationBar";
-
+import Job from "./Components/Job";
+import EnhancedTable from "./Components/EnhancedTabled";
 ReactDOM.render(
 	<Router>
 		<NavigationBar />
 		<Routes>
 			<Route path="/" element={<Dashboard />}/>
 			<Route path="/jobsList" element={<JobsList />}/>
+			<Route path="/job" element={<Job />}/>
 			<Route path="/line" element={<JobsGraph />}/>
+			<Route path="/tables" element={<EnhancedTable />}/>
 		</Routes>
 	</Router>,
 	document.getElementById("root")

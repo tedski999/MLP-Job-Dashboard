@@ -20,6 +20,23 @@ $myOtherColor: #80ffff;
 	}
 }
 
+.list {
+	list-style: none;
+	}
+	.list-item {
+	background-color: #d5d3d6; margin: 9px;
+	padding: 1.5rem; border-radius: 5px;
+	font-family: "Lucida Console", "Courier New", monospace;
+	}
+	.list-item a {
+	font-size: 1.75rem; text-decoration: none; color: #2b2530;
+	}
+	.card {
+	background-color: #9de7fc; margin: 9px;
+	padding: 5rem; border-radius: 5px;
+	width: 100%
+	}
+
 .Dashboard-Page{
 	font-size: 20px;
 	height: 100%;
