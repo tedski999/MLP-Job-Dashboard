@@ -66,3 +66,89 @@ $myOtherColor: #80ffff;
 	align-items: center;
 	justify-content: center;
 }
+
+$color: #0cf;
+$black: #000;
+$white: #fff;
+* {
+	margin: 0;
+	padding: 0;
+  }
+.navigation {
+	font-family: sans;
+	background-color: #052d53;
+	color: $white;
+	&-bar {
+		padding: 10px 12px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		button{
+			display: inline-block;
+			padding: .1rem 0.25rem;
+			color: #052d53;
+			text-transform: uppercase;
+			font-size: 1rem;
+			letter-spacing: .1rem;
+			transition: all .3s;
+			position: relative;
+			overflow: hidden;
+			&:hover{
+				box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+				transform: translateY(-0.25em);
+			}
+			&:focus {
+				box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+				transform: translateY(-0.25em);
+			}
+	  	}
+	  a{
+			color: $myCoolColor;
+			text-decoration: none;
+			transition: all .3s;
+			&:hover{
+				color: $white;
+		
+		}
+	  }
+	  .active{
+		  color: $white;
+		  text-transform: uppercase;
+	  }
+	  .side {
+		// width: 50%;
+		&-left {
+		  display: flex;
+		  gap: 5px;
+		}
+	  }
+	  .side-left a {
+		text-align: center;
+		display: inline-block;
+		padding: 5px 40px;
+		cursor: pointer;
+		letter-spacing: 0.5px;
+		position:relative;
+		overflow:hidden;
+		margin: 0 20px;
+		}
+
+		.side-left a:before {
+		content: "";
+		position: absolute;
+		width: 0;
+		background : #fff;
+		left: 45%;
+		height: 2px;
+		bottom: 0;
+		transition: all .3s;
+		opacity: 0.7;
+		}
+
+		.side-left a:hover:before {
+		width: 100%;
+		left:0;
+		}
+
+	}
+}

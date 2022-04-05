@@ -14,34 +14,18 @@ import "./style.scss";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Dashboard from "./Components/Dashboard";
 import JobsList from "./Components/JobsList";
+import JobsGraph from "./Components/JobsGraph";
+import NavigationBar from "./Components/NavigationBar";
 import Job from "./Components/Job";
-import LineGraph from "./Components/LineGraph";
-
-
-
-const options = {
-	chart: {
-		id: "this is the id"
-	},
-	xaxis: {
-		categories: [1, 2, 3, 4, 5, 6]
-	}
-};
-
-const series = [
-	{
-		name: "example",
-		data: [10, 4, 18, 23, 82, 51]
-	}
-];
 
 ReactDOM.render(
 	<Router>
+		<NavigationBar />
 		<Routes>
 			<Route path="/" element={<Dashboard />}/>
 			<Route path="/jobsList" element={<JobsList />}/>
 			<Route path="/job" element={<Job />}/>
-			<Route path="/line" element={<LineGraph options={options} series={series} />}/>
+			<Route path="/line" element={<JobsGraph />}/>
 		</Routes>
 	</Router>,
 	document.getElementById("root")
