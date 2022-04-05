@@ -17,7 +17,7 @@ import JobsList from "./Components/JobsList";
 import JobsGraph from "./Components/JobsGraph";
 import NavigationBar from "./Components/NavigationBar";
 import Job from "./Components/Job";
-
+import EnhancedTable from "./Components/Job";
 ReactDOM.render(
 	<Router>
 		<NavigationBar />
@@ -26,6 +26,7 @@ ReactDOM.render(
 			<Route path="/jobsList" element={<JobsList />}/>
 			<Route path="/job" element={<Job />}/>
 			<Route path="/line" element={<JobsGraph />}/>
+			<Route path="/tables" element={<EnhancedTable />}/>
 		</Routes>
 	</Router>,
 	document.getElementById("root")
