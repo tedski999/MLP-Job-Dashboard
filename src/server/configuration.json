@@ -1,0 +1,13 @@
+{
+	"db.host": "127.0.0.1",
+	"db.port":  "3306",
+	"user": "root",
+	"pass": "dev",
+	"db": "dev",
+	"port": "8080",
+	"topicspagelength": 10,
+	"jobspagelength": 100,
+	"groupspagelength":10,
+	"slacktoken":"xoxb-3256211508503-3273193590836-W8HqbCKWCQgBCa9L9Bss03MM",
+	"convID":"C0385LMKT4K"
+}
