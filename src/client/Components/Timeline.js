@@ -21,8 +21,6 @@ import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import { withRouter } from 'react-router-dom';
-import { Link } from "react-router-dom";
 
 function createData(name, topic, jobID, lastUpdated) {
 	return {
@@ -97,9 +95,15 @@ const headCells = [
 		disablePadding: false,
 		label: 'Last Updated (Mins)',
 	},
+//   {
+//     id: 'protein',
+//     numeric: true,
+//     disablePadding: false,
+//     label: 'Protein (g)',
+//   },
 ];
 
-function EnhancedTableHead(props) {
+function TimelineHead(props) {
 	const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
 		props;
 	const createSortHandler = (property) => (event) => {
@@ -110,7 +114,7 @@ function EnhancedTableHead(props) {
 		<TableHead>
 			<TableRow>
 				<TableCell padding="checkbox">
-					{/* <Checkbox
+					<Checkbox
 						color="primary"
 						indeterminate={numSelected > 0 && numSelected < rowCount}
 						checked={rowCount > 0 && numSelected === rowCount}
@@ -118,7 +122,7 @@ function EnhancedTableHead(props) {
 						inputProps={{
 							'aria-label': 'select all jobs',
 						}}
-					/> */}
+					/>
 				</TableCell>
 				{headCells.map((headCell) => (
 					<TableCell
@@ -146,7 +150,7 @@ function EnhancedTableHead(props) {
 	);
 }
 
-EnhancedTableHead.propTypes = {
+TimelineHead.propTypes = {
 	numSelected: PropTypes.number.isRequired,
 	onRequestSort: PropTypes.func.isRequired,
 	onSelectAllClick: PropTypes.func.isRequired,
@@ -155,7 +159,7 @@ EnhancedTableHead.propTypes = {
 	rowCount: PropTypes.number.isRequired,
 };
 
-const EnhancedTableToolbar = (props) => {
+const TimelineToolbar = (props) => {
 	const { numSelected } = props;
 
 	return (
@@ -206,11 +210,11 @@ const EnhancedTableToolbar = (props) => {
 	);
 };
 
-EnhancedTableToolbar.propTypes = {
+TimelineToolbar.propTypes = {
 	numSelected: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTable() {
+export default function Timeline() {
 	const [order, setOrder] = React.useState('asc');
 	const [orderBy, setOrderBy] = React.useState('topic');
 	const [selected, setSelected] = React.useState([]);
@@ -275,14 +279,14 @@ export default function EnhancedTable() {
 	return (
 		<Box sx={{ width: '100%' }}>
 			<Paper sx={{ width: '100%', mb: 2 }}>
-				<EnhancedTableToolbar numSelected={selected.length} />
+				<TimelineToolbar numSelected={selected.length} />
 				<TableContainer>
 					<Table
 						sx={{ minWidth: 750 }}
 						aria-labelledby="tableTitle"
 						size={dense ? 'small' : 'medium'}
 					>
-						<EnhancedTableHead
+						<TimelineHead
 							numSelected={selected.length}
 							order={order}
 							orderBy={orderBy}
@@ -297,12 +301,12 @@ export default function EnhancedTable() {
 								.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 								.map((row, index) => {
 									const isItemSelected = isSelected(row.name);
-									const labelId = `enhanced-table-checkbox-${index}`;
+									const labelId = `timeline-checkbox-${index}`;
 
 									return (
 										<TableRow
 											hover
-											//onClick={() => { history.push('/Job') }}
+											onClick={(event) => handleClick(event, row.name)}
 											role="checkbox"
 											aria-checked={isItemSelected}
 											tabIndex={-1}
@@ -310,13 +314,13 @@ export default function EnhancedTable() {
 											selected={isItemSelected}
 										>
 											<TableCell padding="checkbox">
-												{/* <Checkbox
+												<Checkbox
 													color="primary"
 													checked={isItemSelected}
 													inputProps={{
 														'aria-labelledby': labelId,
 													}}
-												/> */}
+												/>
 											</TableCell>
 											<TableCell
 												component="th"
@@ -324,12 +328,12 @@ export default function EnhancedTable() {
 												scope="row"
 												padding="none"
 											>
-											<Link to="/Job">{row.name}</Link>
+												{row.name}
 											</TableCell>
 											<TableCell align="right">{row.topic}</TableCell>
 											<TableCell align="right">{row.jobID}</TableCell>
 											<TableCell align="right">{row.lastUpdated}</TableCell>
-											{/* <TableCell align="right">{row.protein}</TableCell> */}
+											<TableCell align="right">{row.protein}</TableCell>
 										</TableRow>
 									);
 								})}
