@@ -13,8 +13,8 @@
 		"lint:client": "eslint ./src/client",
 		"lint:server": "eslint ./src/server",
 		"docker": "run-s docker:*",
-		"docker:build": "docker build -t mlp-job-dashboard --build-arg PORT=80 .",
-		"docker:run": "docker run --name mlp-job-dashboard --init --rm -p 80:80 -it mlp-job-dashboard",
+		"docker:build": "docker build -t mlp-job-dashboard --build-arg PORT=8080 .",
+		"docker:run": "docker run --name mlp-job-dashboard --init --rm -p 8080:8080 -it mlp-job-dashboard",
 		"prod": "run-s lint build serve",
 		"build": "webpack --progress --mode production",
 		"serve": "node ./src/server/index.js"
