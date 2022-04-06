@@ -1,33 +1,39 @@
 import React from "react";
 import * as ReactDOM from "react-dom";
-//import { render } from "react-dom";
-// NOTE(ted):
-// I haven't worked out decent SCSS scoping to React components yet,
-// so all our styling is global like normal CSS
 import "./style.scss";
-//import { BrowserRouter } from "react-router-dom";
-//import "./index.css";
-//import App from "./App";
 
-//import MyCoolComponent from "./MyCoolComponent/TestComponent";
-
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import Dashboard from "./Components/Dashboard";
-import JobsList from "./Components/JobsList";
-import JobsGraph from "./Components/JobsGraph";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavigationBar from "./Components/NavigationBar";
-import Job from "./Components/Job";
+import Dashboard from "./Views/Dashboard";
+import Jobs from "./Views/Jobs";
+import Job from "./Views/Job";
+import Groups from "./Views/Groups";
+import Group from "./Views/Group";
+import Topics from "./Views/Topics";
+import Topic from "./Views/Topic";
+import Settings from "./Views/Settings";
+import NotFound from "./Views/NotFound";
+
+import JobsGraph from "./Components/JobsGraph";
+import JobsForTable from "./Components/JobsForTable";
 import EnhancedTable from "./Components/EnhancedTabled";
 ReactDOM.render(
-	<Router>
+	<BrowserRouter>
 		<NavigationBar />
 		<Routes>
-			<Route path="/" element={<Dashboard />}/>
-			<Route path="/jobsList" element={<JobsList />}/>
-			<Route path="/job" element={<Job />}/>
+			<Route path="/" element={<Dashboard />} />
+			<Route path="/jobs" element={<Jobs />} />
+			<Route path="/jobs/:id" element={<Job />} />
+			<Route path="/groups" element={<Groups />} />
+			<Route path="/groups/:name" element={<Group />} />
+			<Route path="/topics" element={<Topics />} />
+			<Route path="/topics/:name" element={<Topic />} />
+			<Route path="/settings" element={<Settings />} />
+			<Route path="*" element={<NotFound />} />
+			<Route path="/jobsForTable" element={<JobsForTable />}/>
 			<Route path="/line" element={<JobsGraph />}/>
 			<Route path="/tables" element={<EnhancedTable />}/>
 		</Routes>
-	</Router>,
+	</BrowserRouter>,
 	document.getElementById("root")
 );

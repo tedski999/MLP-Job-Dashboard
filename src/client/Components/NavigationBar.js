@@ -7,10 +7,10 @@ function NavigationBar() {
 		<div className="navigation">
 			<div className="navigation-bar">
 				<div className="side side-left">
-					<NavLink to="/" className={navInfo => navInfo.isActive? "active" : ""}>Home </ NavLink>
-					<NavLink to="/jobsList" className="button">Jobs List </NavLink>
-					<NavLink to="/line" className="navbar-btn">Line Graph </NavLink>
-					<NavLink to="/tables" className="navbar-btn">Tables </NavLink>
+					<NavLink to="/" className={navInfo => navInfo.isActive? "active" : ""}>Dashboard </ NavLink>
+					<NavLink to="/jobs" className="button">Jobs</NavLink>
+					<NavLink to="/groups" className="button">Groups</NavLink>
+					<NavLink to="/topics" className="button">Topics</NavLink>
 					<button onClick={() => navigate(-1)} title="Go previous page" className="previous round">Back </button>
 				</div>
 			</div>

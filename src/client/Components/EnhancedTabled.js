@@ -320,7 +320,7 @@ export default function EnhancedTable() {
 												scope="row"
 												padding="none"
 											>
-												<Link to="/Job">{row.name}</Link>
+												<Link to="/JobsForTable">{row.name}</Link>
 											</TableCell>
 											<TableCell align="right">{row.topic}</TableCell>
 											<TableCell align="right">{row.jobID}</TableCell>
