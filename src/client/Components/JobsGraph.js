@@ -77,7 +77,7 @@ class JobsGraph extends React.Component {
 		}));
 
 		// Count frequencies of jobs as they're streamed in
-		await api.jobs("created_on", this.state.filters.after, this.state.filters.before, "", "", 0, jobs => {
+		await api.jobs("created_on", this.state.filters.after, this.state.filters.before, "", "", "", 0, jobs => {
 			jobs.forEach(job => {
 				const dt = new Date(job.created_on);
 				dt.setMinutes(0, 0, 0);

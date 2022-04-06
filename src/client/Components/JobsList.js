@@ -76,6 +76,7 @@ class JobsList extends React.Component {
 			this.state.filters.before,
 			this.state.filters.group,
 			this.state.filters.topic,
+			"",
 			100, this.lastJobID);
 
 		this.setState({ jobs: [...this.state.jobs, ...newJobs] });
