@@ -8,6 +8,11 @@ A web-based dashboard application for the monitoring and alerting of automation 
 
 ### Starting The App
 
+#### Configuration
+
+You should first edit the values in [config.json](config.json) to match your needs.
+Specifically, you're going to need to at least input API keys so that the app has the access permissions it needs.
+
 #### Using Docker
 
 To start using Docker, run `docker run -p 8080:8080 --init ghcr.io/tedski999/mlp-job-dashboard`.

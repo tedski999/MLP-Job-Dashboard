@@ -1,11 +1,13 @@
 const mariadb = require("mariadb");
+const { db } = require("../../config.json");
+
 let pool;
 
 function init() {
 	pool = mariadb.createPool({
-		host: "127.0.0.1", port: "3306",
-		user: "root", password: "dev",
-		database: "dev"
+		host: db.host, port: db.port,
+		user: db.user, password: db.pass,
+		database: db.db
 	});
 }
 
