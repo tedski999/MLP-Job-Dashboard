@@ -18,8 +18,9 @@ RUN chmod 644 package.json package-lock.json
 RUN npm ci --production
 COPY --from=build /usr/src/app/dist ./dist
 COPY ./src/server ./src/server
+COPY ./config.json ./config.json
 RUN find ./src -type d -exec chmod 755 {} \;
-RUN find ./src -type f -exec chmod 644 {} \;
+RUN find ./src ./config.json -type f -exec chmod 644 {} \;
 ENTRYPOINT ["npm", "run"]
 CMD ["serve"]
 USER nobody
