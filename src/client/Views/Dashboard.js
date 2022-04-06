@@ -1,5 +1,4 @@
 import React from "react";
-import JobsList from "../Components/JobsList";
 import JobsGraph from "../Components/JobsGraph";
 
 class Dashboard extends React.Component {
@@ -7,7 +6,6 @@ class Dashboard extends React.Component {
 		return (
 			<div>
 				<JobsGraph />
-				<JobsList />
 			</div>
 		);
 	}
