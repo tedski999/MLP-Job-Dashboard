@@ -1,6 +1,10 @@
 {
 	"port": "8080",
 	"root": "./dist",
+	"anomalies": {
+		"croninterval": "0 * * * * *",
+		"stddev": 2
+	},
 	"db": {
 		"db": "dev",
 		"host": "127.0.0.1",
