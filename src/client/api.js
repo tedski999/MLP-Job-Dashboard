@@ -48,7 +48,8 @@ async function fetchStream(url, callback) {
 
 // Get all the details about a job with a specific job_id
 async function job(id) {
-	return await fetchJSON("/v1/jobs/" + id)[0];
+	const $job = await fetchJSON("/v1/jobs/" + id);
+	return $job[0];
 }
 
 // Get a filtered list of jobs, sorted in decending job_id order.
