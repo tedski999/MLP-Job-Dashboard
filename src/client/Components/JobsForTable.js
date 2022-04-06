@@ -1,10 +1,10 @@
 import React from "react";
 import Timeline from "./Timeline";
 
-function Job(){
+function JobsForTable(){
 	return <div className="Job">
-        INDIVIDUAL JOB PAGE
+        Jobs for tables
 		<div><Timeline></Timeline></div>
 	</div>;
 }
-export default Job;
+export default JobsForTable;
