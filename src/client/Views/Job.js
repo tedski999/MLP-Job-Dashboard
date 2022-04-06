@@ -1,7 +1,7 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import api from "../api";
-import WithRouter from "../Components/WithRouter"
+import WithRouter from "../Components/WithRouter";
 import NotFound from "./NotFound";
 
 // export default async function Job() {
@@ -36,7 +36,7 @@ class Job extends React.Component {
 		}
 		if(this.state.jobData === undefined){
 			// return <p>Not Found</p>;
-			return <NotFound/>
+			return <NotFound/>;
 		}
 		// console.log(JSON.stringify(this.state.jobData));
 		return (
