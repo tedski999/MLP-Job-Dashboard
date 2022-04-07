@@ -16,8 +16,24 @@
 		"user": "root",
 		"pass": "dev"
 	},
-	"slack": {
-		"token": "<your token>",
-		"convID": "C0385LMKT4K"
+	"services": {
+		"Email": {
+			"src": "./src/server/services/email.js",
+			"config": {
+				"port": 587,
+				"secure": false,
+				"host": "<your host>",
+				"sender": "\"MLP Job Dashboard\" me@example.com",
+				"username": "<your username>",
+				"password": "<your password>",
+				"subject": "Automation Job Issue"
+			}
+		},
+		"Slack": {
+			"src": "./src/server/services/slack.js",
+			"config": {
+				"token": "<your token>"
+			}
+		}
 	}
 }
