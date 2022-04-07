@@ -1,5 +1,6 @@
 const db = require("./db");
 const { scan } = require("../../config.json");
+const alerts = require("./alerts.js");
 
 let scanExecutor;
 let executionMetrics;
@@ -45,11 +46,14 @@ function isJobExectionTimeAnomalous(job) {
 
 function handleNewJob(job) {
 	if (job.status_id === 4 || job.status_id === 5) {
-		// TODO: send failure alerts
+		console.log(`Job #${job.job_id} failed with status ${job.status_id}. Sending alert...`);
+		alerts.sendFailureReport(job);
 	} else {
 		recordJobMetrics(job);
 		if (isJobExectionTimeAnomalous(job)) {
-			// TODO: send anomaly alert
+			const execTime = getJobExecutionTime(job);
+			console.log(`Job #${job.job_id} was detected as having an anomalous execution time of ${execTime}s when compared to others in it's topic and group. Sending alert...`);
+			alerts.sendAnomalyReport(job, execTime);
 		}
 	}
 }
