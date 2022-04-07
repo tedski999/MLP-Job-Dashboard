@@ -43,6 +43,13 @@ CREATE TABLE IF NOT EXISTS auto_queue (
 	priority INT
 );
 
+CREATE TABLE IF NOT EXISTS alert_settings (
+	job_topic VARCHAR(255) PRIMARY KEY,
+	group_name VARCHAR(255) PRIMARY KEY,
+	service VARCHAR(255) NOT NULL,
+	destination VARCHAR(255)
+);
+
 LOAD DATA LOCAL INFILE '${jobStatusFile}'
 	INTO TABLE job_status
 	COLUMNS TERMINATED BY ','

@@ -17,11 +17,6 @@ async function getServiceNames() {
 	return services.keys();
 }
 
-async function setTopicGroupService(service, destination) {
-	console.log(service, "-", destination);
-	// TODO: insert (topic group service destination)
-}
-
 async function sendFailureReport(job) {
 	sendViaAppropriateService(job, "foo bar baz");
 }
@@ -30,7 +25,4 @@ async function sendAnomalyReport(job, execTime) {
 	sendViaAppropriateService(job, `bing bang boom ${execTime}`);
 }
 
-module.exports = {
-	getServiceNames, setTopicGroupService,
-	sendFailureReport, sendAnomalyReport
-};
+module.exports = { getServiceNames, sendFailureReport, sendAnomalyReport };

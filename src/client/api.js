@@ -99,8 +99,36 @@ async function status(id) {
 	return await fetchJSON("/v1/statuses/" + id)[0];
 }
 
+// Get a filterable list of alert destination settings
+async function alerts(topic, group, service, destination) {
+	return await fetchJSON(`/v1/alerts?t=${topic}&g=${group}&s=${service}&d=${destination}`);
+}
+
+// Set the service and destination of an alert
+async function setAlert(topic, group, service, destination) {
+	try {
+		const response = await fetch("/v1/alerts", {
+			method: "POST",
+			body: JSON.stringify({ topic, group, service, destination }),
+			headers: { "Content-Type": "application/json" }
+		});
+		return await response.json();
+	} catch (err) {
+		alert("Error:", err);
+		return [];
+	}
+}
+
+// Delete alert destination settings
+async function deleteAlerts(topic, group, service, destination) {
+	return await fetchJSON(`/v1/alerts?t=${topic}&g=${group}&s=${service}&d=${destination}`, {
+		method: "DELETE"
+	});
+}
+
 export default {
 	job, jobs,
 	groups, topics,
-	status, statuses
+	status, statuses,
+	alerts, setAlert, deleteAlerts
 };
