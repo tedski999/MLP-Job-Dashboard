@@ -1,6 +1,7 @@
 import React from "react";
 import JobsList from "../Components/Lists/JobsList";
 import JobsOverTime from "../Components/Graphs/JobsOverTime";
+import StatusOverTime from "../Components/Graphs/StatusOverTime";
 
 class Dashboard extends React.Component {
 	render() {
@@ -9,6 +10,7 @@ class Dashboard extends React.Component {
 		return (
 			<div>
 				<JobsOverTime after={oneMonthAgo} before={now} aggregation="hour" />
+				<StatusOverTime after={oneMonthAgo} before={now} aggregation="day" />
 				<JobsList />
 			</div>
 		);
