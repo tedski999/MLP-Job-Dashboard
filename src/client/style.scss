@@ -243,3 +243,42 @@ $white: #fff;
 	}
 
 }
+
+.group-page-container{
+	// width: 100vw;
+	// height: 100vh;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 80px 80px 480px ;
+
+	gap: 10px;
+	padding: 10px;
+	box-sizing: border-box;
+
+	.group-page-header{
+		padding: 10px;
+		grid-column-start: 1;
+		grid-column-end: 4;
+		border: 1px solid #000;
+	}
+	.group-page-warning-section{
+		padding: 10px;
+		grid-column-start: 1;
+		grid-column-end: 4;
+		border: 1px solid #000;
+	}
+	.group-page-recentJobs-section{
+		padding: 10px;
+		grid-column-start: 1;
+		grid-column-end: 2;
+		border: 1px solid #000;
+
+	}
+	.group-page-history-section{
+		padding: 10px;
+		grid-column-start: 2;
+		grid-column-end: 4;
+		border: 1px solid #000;
+	}
+
+}
