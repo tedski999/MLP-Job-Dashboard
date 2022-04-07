@@ -5,13 +5,12 @@ class Topics extends React.Component {
 		return (
 			<div className="topics-main-page-container">
 				<div className="topics-main-page-header">
-					 <h1>
-						 Topic
-					 </h1>
+					<h1>
+						Topics
+					</h1>
 				</div>
 				<div className="topics-main-page-topics-list">
 					<h3>Topics List</h3>
-					
 					<div>
 						ADD TOPICS LIST
 					</div>
@@ -24,7 +23,7 @@ class Topics extends React.Component {
 				</div>
 			</div>
 			// <div>List of topics</div>
-		)
+		);
 	}
 }
 
