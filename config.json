@@ -1,9 +1,13 @@
 {
 	"port": "8080",
 	"root": "./dist",
-	"anomalies": {
-		"croninterval": "0 * * * * *",
-		"stddev": 2
+	"scan": {
+		"interval": 60,
+		"anomaly": {
+			"sensitivity": 2,
+			"minJobs": 5,
+			"history": 365
+		}
 	},
 	"db": {
 		"db": "dev",

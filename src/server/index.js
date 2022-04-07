@@ -8,15 +8,14 @@ const client = require("./client.js");
 const anomolies = require("./anomolies.js");
 const db = require("./db.js");
 
-db.init();
-anomolies.start();
-
 app.use(express.static(path.join(__dirname, "..", "..", root)));
 app.use("/v1", v1);
 app.use("*", client);
 
 const server = app.listen(port, () => {
 	console.log(`Server listening on port ${port}`);
+	db.init();
+	anomolies.start();
 });
 
 function shutdown() {
@@ -33,3 +32,4 @@ function shutdown() {
 
 process.on("SIGINT", shutdown);
 process.on("SIGTERM", shutdown);
+process.on("beforeExit", shutdown);
