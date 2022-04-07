@@ -57,11 +57,21 @@ class StatusOverTime extends React.Component {
 	}
 
 	render() {
+
+		let interval = 60*60; // 1 hour
+		switch (this.props.aggregation) {
+		case "day": interval = 60*60*24; break;
+		case "hour": interval = 60*60; break;
+		case "minute": interval = 60; break;
+		case "second": interval = 1; break;
+		}
+
 		return (
 			<FreqOverTime
 				data={this.state.data}
 				after={this.props.after}
 				before={this.props.before}
+				interval={interval}
 			/>
 		);
 	}

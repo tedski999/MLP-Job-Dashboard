@@ -8,6 +8,7 @@ class FreqOverTime extends React.Component {
 		data: PropTypes.array.isRequired,
 		after: PropTypes.instanceOf(Date).isRequired,
 		before: PropTypes.instanceOf(Date).isRequired,
+		interval: PropTypes.number.isRequired
 	};
 
 	constructor(props) {
@@ -19,7 +20,7 @@ class FreqOverTime extends React.Component {
 		const series = [];
 		this.props.data.forEach(data => {
 			const frequencies = [];
-			for (const dt = new Date(this.props.after); dt <= this.props.before; dt.setHours(dt.getHours() + 1)) {
+			for (const dt = new Date(this.props.after); dt <= this.props.before; dt.setTime(dt.getTime() + this.props.interval * 1000)) {
 				frequencies[dt] = 0;
 			}
 			data.dates.forEach(date => {

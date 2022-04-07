@@ -14,7 +14,6 @@ import Topic from "./Views/Topic";
 import Settings from "./Views/Settings";
 import NotFound from "./Views/NotFound";
 
-import JobsGraph from "./Components/JobsGraph";
 import JobsForTable from "./Components/JobsForTable";
 import EnhancedTable from "./Components/EnhancedTabled";
 ReactDOM.render(
@@ -31,7 +30,6 @@ ReactDOM.render(
 			<Route path="/settings" element={<Settings />} />
 			<Route path="*" element={<NotFound />} />
 			<Route path="/jobsForTable" element={<JobsForTable />}/>
-			<Route path="/line" element={<JobsGraph />}/>
 			<Route path="/tables" element={<EnhancedTable />}/>
 		</Routes>
 	</BrowserRouter>,
