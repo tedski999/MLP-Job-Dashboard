@@ -45,8 +45,28 @@ class Job extends React.Component {
 			return <NotFound/>;
 		}
 		const pageStructure = (
-			<div>
-				{this.state.jobData.job_number}
+			<div className="job-page-container">
+				{/* <h1>Job: {this.state.jobData.job_number}</h1>
+				<span># {this.state.jobData.job_uid}</span>
+				<div>
+					<h1> Payload </h1>
+				</div> */}
+				<div className="job-page-header"> 
+					<h1>Job: {this.state.jobData.job_number} </h1>
+					<span># {this.state.jobData.job_uid} </span>
+				</div>
+				<div className = "job-page-warning-section"> Warning
+					<div>ADD WARNING</div>
+				</div>
+				<div className = "job-page-payload-section"> Payload
+					<div>ADD PAYLOAD</div>
+				</div>
+				<div className = "job-page-timeline-section"> TimeLine
+					<div>ADD TIMELINE</div>
+				</div>
+				<div className = "job-page-parentJobs-section"> Parent Jobs
+					<div>ADD PARENT JOBS</div>
+				</div>
 			</div>
 
 		);
