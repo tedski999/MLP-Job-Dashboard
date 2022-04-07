@@ -5,14 +5,27 @@ const app = express();
 const { port, root } = require("../../config.json");
 const v1 = require("./api/v1/v1.js");
 const client = require("./client.js");
+const autoscan = require("./autoscan.js");
 const db = require("./db.js");
-
-db.init();
 
 app.use(express.static(path.join(__dirname, "..", "..", root)));
 app.use("/v1", v1);
 app.use("*", client);
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
 	console.log(`Server listening on port ${port}`);
+	db.init();
+	autoscan.start();
 });
+
+function shutdown() {
+	console.log("Shutting down server...");
+	autoscan.stop();
+	db.stop();
+	server.close(() => { process.exit(0); });
+	setTimeout(() => { process.exit(0); }, 1000).unref();
+}
+
+process.on("SIGINT", shutdown);
+process.on("SIGTERM", shutdown);
+process.on("beforeExit", shutdown);
