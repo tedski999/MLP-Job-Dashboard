@@ -1,5 +1,5 @@
 import React from "react";
-import JobsList from "../Components/JobsList";
+import JobsList from "../Components/Lists/JobsList";
 
 class Jobs extends React.Component {
 	render() {

@@ -28,8 +28,10 @@ class JobsList extends React.Component {
 	async fetchJobs() {
 		const len = this.state.jobs.length;
 		const seek = (len === 0) ? 0 : "" + this.state.jobs[len - 1].job_id;
+		const after = this.props.after !== undefined ? this.props.after.toISOString() : "";
+		const before = this.props.before !== undefined ? this.props.before.toISOString() : "";
 		const newJobs = await api.jobs("",
-			this.props.after.toISOString(), this.props.before.toISOString(),
+			after, before,
 			this.props.group, this.props.topic,
 			this.props.status,
 			100, seek);
