@@ -98,7 +98,7 @@ class JobsList extends React.Component {
 					<img className="status" src={icon} />
 				</a>
 				<div className="details">
-					<p><a href={`/jobs/${job.job_id}`}>{job.job_number}</a> | <a href={`/groups/${job.job_topic}`}><span className="topicgroup">{job.job_topic}</span></a>, <a href={`/groups/${job.group_name}`}><span className="topicgroup">{job.group_name}</span></a></p>
+					<p><a href={`/jobs/${job.job_id}`}>{job.job_number}</a> | <a href={`/topics/${job.job_topic}`}><span className="topicgroup">{job.job_topic}</span></a>, <a href={`/groups/${job.group_name}`}><span className="topicgroup">{job.group_name}</span></a></p>
 					<a className="uid" href={`/jobs/${job.job_id}`}>#{job.job_uid}</a>
 				</div>
 				<div className="timestatus">
