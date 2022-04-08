@@ -37,7 +37,7 @@ class StatusOverTime extends React.Component {
 			"Created", "Read",
 			"Acknowledged", "Successful",
 			"Failed", "TimedOut", "Retried", "Cancelled"
-		]
+		];
 
 		const data = [];
 		await api.jobs("created_on,status_id", this.props.after.toISOString(), this.props.before.toISOString(), this.props.group, this.props.topic, this.props.status, 0, newJobs => {
