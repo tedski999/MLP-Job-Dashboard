@@ -14,8 +14,6 @@ import Topic from "./Views/Topic";
 import Settings from "./Views/Settings";
 import NotFound from "./Views/NotFound";
 
-import JobsForTable from "./Components/JobsForTable";
-import EnhancedTable from "./Components/EnhancedTabled";
 ReactDOM.render(
 	<BrowserRouter>
 		<NavigationBar />
@@ -29,8 +27,6 @@ ReactDOM.render(
 			<Route path="/topics/:name" element={<Topic />} />
 			<Route path="/settings" element={<Settings />} />
 			<Route path="*" element={<NotFound />} />
-			<Route path="/jobsForTable" element={<JobsForTable />}/>
-			<Route path="/tables" element={<EnhancedTable />}/>
 		</Routes>
 	</BrowserRouter>,
 	document.getElementById("root")

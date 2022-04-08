@@ -1,23 +1,7 @@
 $myCoolColor: grey;
-$myOtherColor: #80ffff;
 
-.CoolComponentStyling {
-
-	display: inline-block;
-	padding: 0 20px;
-	margin: 10px;
-	text-align: center;
-	background: $myCoolColor;
-
-	h3 {
-		font-family: sans;
-		color: $myOtherColor;
-	}
-
-	img {
-		width: 100px;
-		margin-bottom: 20px;
-	}
+:root {
+	font-family: sans;
 }
 
 .list {
@@ -38,16 +22,6 @@ $myOtherColor: #80ffff;
 	}
 
 .Dashboard-Page{
-	font-size: 20px;
-	height: 100%;
-	width: 100%;
-	display: flex;
-	position: fixed;
-	align-items: center;
-	justify-content: center;
-}
-
-.Jobs-List{
 	font-size: 20px;
 	height: 100%;
 	width: 100%;
@@ -357,4 +331,74 @@ $white: #fff;
 	}
 
 
+}
+
+.dashboard-main-page-container {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 1em;
+	.graphs {
+		width: 100%;
+		.graph {
+			display: inline-block;
+			width: 50%;
+		}
+	}
+}
+
+.jobs-main-page-container{
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.jobs-list-entry {
+	display: flex;
+	margin: 1em;
+	padding: .5em;
+	color: #222222;
+	border: 1px solid #cccccc;
+	border-radius: .5em;
+
+	.icon {
+		position: relative;
+		.job {
+			width: 2.5em;
+		}
+		.status {
+			position: absolute;
+			top: 1.25em;
+			left: 1.5em;
+			z-index: 1;
+			width: 1.25em;
+		}
+	}
+	.details {
+		color: #222222;
+		margin: auto auto auto 1em;
+		.uid { color: #777777; }
+		.topicgroup { color: #777777; }
+	}
+	.timestatus {
+		color: #222222;
+		text-align: right;
+		margin: auto 0 auto auto;
+		.status { color: #777777; }
+	}
+	a {
+		text-decoration: none;
+		color: #222222;
+	}
+}
+
+.job-filter-toolbar {
+	margin: 1em 0;
+	.button {
+		cursor: pointer;
+		margin: .5em 0;
+		span { text-decoration: underline; }
+	}
+	.filters {
+		display: inline;
+		input { margin: .1em .5em; }
+	}
 }
