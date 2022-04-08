@@ -1,5 +1,9 @@
 $myCoolColor: grey;
 
+:root {
+	font-family: sans;
+}
+
 .list {
 	list-style: none;
 	}
@@ -329,10 +333,26 @@ $white: #fff;
 
 }
 
-.jobs-list-entry {
+.dashboard-main-page-container {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 1em;
+	.graphs {
+		width: 100%;
+		.graph {
+			display: inline-block;
+			width: 50%;
+		}
+	}
+}
 
+.jobs-main-page-container{
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.jobs-list-entry {
 	display: flex;
-	max-width: 50em;
 	margin: 1em;
 	padding: .5em;
 	color: #222222;
@@ -358,8 +378,11 @@ $white: #fff;
 		.uid { color: #777777; }
 		.topicgroup { color: #777777; }
 	}
-	.time {
+	.timestatus {
+		color: #222222;
+		text-align: right;
 		margin: auto 0 auto auto;
+		.status { color: #777777; }
 	}
 	a {
 		text-decoration: none;
@@ -367,3 +390,15 @@ $white: #fff;
 	}
 }
 
+.job-filter-toolbar {
+	margin: 1em 0;
+	.button {
+		cursor: pointer;
+		margin: .5em 0;
+		span { text-decoration: underline; }
+	}
+	.filters {
+		display: inline;
+		input { margin: .1em .5em; }
+	}
+}

@@ -33,6 +33,12 @@ class StatusOverTime extends React.Component {
 	async fetchData() {
 		this.setState({ loading: true, data: [] });
 
+		const labelmap = [
+			"Created", "Read",
+			"Acknowledged", "Successful",
+			"Failed", "TimedOut", "Retried", "Cancelled"
+		]
+
 		const data = [];
 		await api.jobs("created_on,status_id", this.props.after.toISOString(), this.props.before.toISOString(), this.props.group, this.props.topic, this.props.status, 0, newJobs => {
 			newJobs.forEach(job => {
@@ -43,9 +49,10 @@ class StatusOverTime extends React.Component {
 				case "minute": date.setSeconds(0, 0); break;
 				case "second": date.setMilliseconds(0); break;
 				}
-				let result = data.find(d => { return d.label === job.status_id; });
+				const label = labelmap[job.status_id];
+				let result = data.find(d => { return d.label === label; });
 				if (result === undefined) {
-					data.push({ label: job.status_id, dates: [date] });
+					data.push({ label: label, dates: [date] });
 				} else {
 					result.dates.push(date);
 				}

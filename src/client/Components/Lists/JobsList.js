@@ -71,6 +71,7 @@ class JobsList extends React.Component {
 		];
 		const mostRecent = times.reduce((prev, current) => prev.time > current.time ? prev : current);
 
+		// TODO: get this from api.status(job.status_id) somehow?
 		const colormap = [
 			"#cceecc", "#cceecc",
 			"#eeeeee", "#eeeeee",
@@ -81,8 +82,14 @@ class JobsList extends React.Component {
 			SuccessIcon, SuccessIcon,
 			FailureIcon, FailureIcon, FailureIcon, FailureIcon
 		];
+		const statusmap = [
+			"Created", "Read",
+			"Acknowledged", "Successful",
+			"Failed", "TimedOut", "Retried", "Cancelled"
+		];
 		const color = colormap[job.status_id];
 		const icon = iconmap[job.status_id];
+		const status = statusmap[job.status_id];
 
 		return (
 			<div style={{ background: color }} className="jobs-list-entry" key={job.job_id}>
@@ -94,7 +101,10 @@ class JobsList extends React.Component {
 					<p><a href={`/jobs/${job.job_id}`}>{job.job_number}</a> | <a href={`/groups/${job.job_topic}`}><span className="topicgroup">{job.job_topic}</span></a>, <a href={`/groups/${job.group_name}`}><span className="topicgroup">{job.group_name}</span></a></p>
 					<a className="uid" href={`/jobs/${job.job_id}`}>#{job.job_uid}</a>
 				</div>
-				<p className="time">{mostRecent.name} {timeSince(mostRecent.time)} ago</p>
+				<div className="timestatus">
+					<p className="time">{mostRecent.name} {timeSince(mostRecent.time)} ago</p>
+					<p className="status">{status}</p>
+				</div>
 			</div>
 		);
 	}
@@ -104,7 +114,7 @@ class JobsList extends React.Component {
 			<InfiniteList
 				data={this.state.jobs}
 				fetchData={this.fetchJobs}
-				loading={<p>Loading jobs...</p>}
+				loading={<p className="job-filter-toolbar">Loading jobs...</p>}
 				renderItem={this.renderJob}
 			/>
 		);
