@@ -3,6 +3,11 @@ import InfiniteList from "./InfiniteList";
 import PropTypes from "prop-types";
 import api from "../../api";
 
+import CogsIcon from "./cogs.png";
+import SuccessIcon from "./success.png";
+import FailureIcon from "./failure.png";
+import InfoIcon from "./info.png";
+
 class JobsList extends React.Component {
 
 	static propTypes = {
@@ -39,7 +44,59 @@ class JobsList extends React.Component {
 	}
 
 	renderJob(job) {
-		return <p key={job.job_id}>{job.job_id}</p>;
+
+		const timeSince = date => {
+			let interval = new Date() - date;
+			if (interval < 1000) { return Math.floor(interval) + "ms"; }
+			interval /= 1000;
+			if (interval < 60) { return Math.floor(interval) + "s"; }
+			interval /= 60;
+			if (interval < 60) { return Math.floor(interval) + "m"; }
+			interval /= 60;
+			if (interval < 24) { return Math.floor(interval) + "h"; }
+			interval /= 24;
+			if (interval < 30) { return Math.floor(interval) + "d"; }
+			interval /= 30;
+			if (interval < 12) { return Math.floor(interval) + "mo"; }
+			interval /= 12;
+			return Math.floor(interval) + "y";
+		};
+
+		const times = [
+			{ name: "Completed", time: new Date(job.completed_at) },
+			{ name: "Updated", time: new Date(job.updated_at) },
+			{ name: "Read", time: new Date(job.read_at) },
+			{ name: "Acked", time: new Date(job.acked_at) },
+			{ name: "Created", time: new Date(job.created_on) }
+		];
+		const mostRecent = times.reduce((prev, current) => prev.time > current.time ? prev : current);
+
+		const colormap = [
+			"#cceecc", "#cceecc",
+			"#eeeeee", "#eeeeee",
+			"#eecccc", "#eecccc", "#eecccc", "#eecccc"
+		];
+		const iconmap = [
+			InfoIcon, InfoIcon,
+			SuccessIcon, SuccessIcon,
+			FailureIcon, FailureIcon, FailureIcon, FailureIcon
+		];
+		const color = colormap[job.status_id];
+		const icon = iconmap[job.status_id];
+
+		return (
+			<div style={{ background: color }} className="jobs-list-entry" key={job.job_id}>
+				<a className="icon" href={`/jobs/${job.job_id}`}>
+					<img className="job" src={CogsIcon} />
+					<img className="status" src={icon} />
+				</a>
+				<div className="details">
+					<p><a href={`/jobs/${job.job_id}`}>{job.job_number}</a> | <a href={`/groups/${job.job_topic}`}><span className="topicgroup">{job.job_topic}</span></a>, <a href={`/groups/${job.group_name}`}><span className="topicgroup">{job.group_name}</span></a></p>
+					<a className="uid" href={`/jobs/${job.job_id}`}>#{job.job_uid}</a>
+				</div>
+				<p className="time">{mostRecent.name} {timeSince(mostRecent.time)} ago</p>
+			</div>
+		);
 	}
 
 	render() {
