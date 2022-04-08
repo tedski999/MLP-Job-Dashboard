@@ -142,22 +142,36 @@ $white: #fff;
 	padding: 10px;
 	box-sizing: border-box;
 	.job-page-header{
-		padding: 10px;
+		// padding: 10px;
 		grid-column-start: 1;
 		grid-column-end: 4;
 		border: 1px solid #000;
+		.null-sub-status{
+			font-style: italic;
+		}
 	}
 	.job-page-warning-section{
 		padding: 10px;
 		grid-column-start: 1;
 		grid-column-end: 4;
 		border: 1px solid #000;
+		.status {
+			position: flex;
+			top: 2em;
+			left: 2.25em;
+			z-index: 1;
+			width: 2em;
+		}
+		
 	}
 	.job-page-payload-section{
 		padding: 10px;
 		grid-column-start: 1;
 		grid-column-end: 2;
 		border: 1px solid #000;
+		.empty-payload{
+			font-style: italic;
+		}
 	}
 	.job-page-timeline-section {
 		padding: 10px;
@@ -203,6 +217,8 @@ $white: #fff;
 		grid-column-end: 4;
 		border: 1px solid #000;
 		border-radius: 5px;
+
+		
 	}
 	.topic-page-recentJobs-section{
 		padding: 10px;
