@@ -63,8 +63,9 @@ class Job extends React.Component {
 					<h1> Payload </h1>
 				</div> */}
 				<div className="job-page-header"> 
-					<h1>Job: {this.state.jobData.job_number} </h1>
-					<span># {this.state.jobData.job_uid} </span>
+					<h1>Job: {/*this.state.jobData.job_number*/this.state.jobData.job_topic } </h1>
+					<span># {this.state.jobData.job_number} </span>
+					<p># {this.state.jobData.job_uid} </p>
 					<div>
 						{this.state.jobData.job_sub_status === null && <p className = "null-sub-status"> No Sub Status</p> || 
 						<p>{this.state.jobData.job_sub_status}</p>}
