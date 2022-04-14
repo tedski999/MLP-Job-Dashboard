@@ -40,7 +40,8 @@ CREATE TABLE IF NOT EXISTS auto_queue (
 	completed_from_ip VARCHAR(255),
 	completed_by VARCHAR(255),
 	parent_job_id INT,
-	priority INT
+	priority INT,
+	INDEX (job_topic, group_name, status_id, created_on)
 );
 
 CREATE TABLE IF NOT EXISTS alert_settings (
