@@ -46,9 +46,9 @@ CREATE TABLE IF NOT EXISTS auto_queue (
 CREATE TABLE IF NOT EXISTS alert_settings (
 	job_topic VARCHAR(255),
 	group_name VARCHAR(255),
-	service VARCHAR(255) NOT NULL,
+	service VARCHAR(255),
 	destination VARCHAR(255),
-	PRIMARY KEY (job_topic, group_name)
+	PRIMARY KEY (job_topic(100), group_name(100), service(100), destination)
 );
 
 LOAD DATA LOCAL INFILE '${jobStatusFile}'

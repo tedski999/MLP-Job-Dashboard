@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.use(require("./auto_queue"));
 router.use(require("./job_status"));
+router.use(require("./alerts"));
 router.use((req, res) => {
 	res.sendStatus(404);
 });

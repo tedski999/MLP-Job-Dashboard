@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const db = require("../../db.js");
 
+router.use(express.json());
+
 router.get("/alerts", async (req, res) => {
 	const topic = req.query.t || "";
 	const group = req.query.g || "";
@@ -19,13 +21,14 @@ router.get("/alerts", async (req, res) => {
 });
 
 router.post("/alerts", async (req, res) => {
-	const data = await JSON.parse(req.body);
+	const data = req.body;
 	let query = `
-	INSERT INTO alert_settings VALUES(
-		${data.topic}, ${data.group},
-		${data.service}, ${data.destination}
-	) ON DUPLICATE KEY UPDATE`;
-	res.json(await db.query(query));
+	INSERT IGNORE INTO alert_settings VALUES(
+		"${data.topic}", "${data.group}",
+		"${data.service}", "${data.destination}"
+	)`;
+	await db.query(query);
+	res.json({});
 });
 
 router.delete("/alerts", async (req, res) => {

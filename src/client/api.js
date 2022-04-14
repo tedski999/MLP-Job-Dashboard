@@ -110,7 +110,7 @@ async function setAlert(topic, group, service, destination) {
 	try {
 		const response = await fetch("/v1/alerts", {
 			method: "POST",
-			body: JSON.stringify({ topic, group, service, destination }),
+			body: JSON.stringify({ topic: topic, group: group, service: service, destination: destination }),
 			headers: { "Content-Type": "application/json" }
 		});
 		return await response.json();

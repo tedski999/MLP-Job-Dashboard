@@ -11,6 +11,7 @@ function NavigationBar() {
 					<NavLink to="/jobs" className="button">Jobs</NavLink>
 					<NavLink to="/groups" className="button">Groups</NavLink>
 					<NavLink to="/topics" className="button">Topics</NavLink>
+					<NavLink to="/settings" className="button">Settings</NavLink>
 					<button onClick={() => navigate(-1)} title="Go previous page" className="previous round">Back </button>
 				</div>
 			</div>
