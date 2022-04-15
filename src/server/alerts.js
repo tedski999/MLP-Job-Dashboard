@@ -5,12 +5,13 @@ const { services } = require("../../config.json");
 async function sendViaAppropriateService(job, content) {
 	const query = `
 		SELECT service, destination FROM alert_settings
-		WHERE topic = ${job.job_topic} AND group = ${job.group_name}`;
-	const result = await db.query(query);
-	const { serviceName, destination } = result[0];
-	const src = path.join(__dirname, "..", "..", services[serviceName].src);
-	const service = require(src);
-	service.send(destination, content);
+		WHERE job_topic = ${job.job_topic} AND group_name = ${job.group_name}`;
+	const results = await db.query(query);
+	results.forEach(({ serviceName, destination }) => {
+		const src = path.join(__dirname, "..", "..", services[serviceName].src);
+		const service = require(src);
+		service.send(destination, content);
+	});
 }
 
 async function getServiceNames() {

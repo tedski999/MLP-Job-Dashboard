@@ -13,7 +13,7 @@ class Jobs extends React.Component {
 		this.state = {
 			jobs: [],
 			statuses: [],
-			loading: false,
+			loading: true,
 			filters: {
 				attributes: "job_id,job_uid,status_id",
 				before: now,

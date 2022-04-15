@@ -13,7 +13,7 @@ class Topics extends React.Component {
 		this.state = {
 			topics: [],
 			statuses: [],
-			loading: false,
+			loading: true,
 			filters: {
 				attributes: "job_topic,",
 				before: now,

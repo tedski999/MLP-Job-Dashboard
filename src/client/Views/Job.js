@@ -15,7 +15,7 @@ class Job extends React.Component {
 			id: this.props.params.id,
 			job: {},
 			statuses: [],
-			loading: false
+			loading: true
 		};
 	}
 

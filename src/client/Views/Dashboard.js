@@ -16,7 +16,7 @@ class Dashboard extends React.Component {
 			jobs: [],
 			freqs: {},
 			statuses: [],
-			loading: false,
+			loading: true,
 			aggregation: 1000*60*60*24,
 			filters: {
 				columns: "job_id,job_uid,created_on,status_id",

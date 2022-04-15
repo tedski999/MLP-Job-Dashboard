@@ -13,7 +13,7 @@ class Groups extends React.Component {
 		this.state = {
 			groups: [],
 			statuses: [],
-			loading: false,
+			loading: true,
 			filters: {
 				attributes: "job_id,job_topic,group_name,created_on",
 				before: now,

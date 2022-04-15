@@ -225,6 +225,14 @@ $white: #fff;
 	}
 }
 
+.settings-page {
+	max-width: 1000px;
+	margin: 0 auto;
+	.config-entry {
+		padding: .25em 0;
+	}
+}
+
 .groups-page,
 .topics-page {
 	max-width: 1000px;
@@ -247,17 +255,17 @@ $white: #fff;
 		}
 	}
 	.details {
-		color: #222222;
+		color: #777777;
 		margin: auto auto auto 1em;
 		.count { color: #777777; }
+		a { color: #222222; }
 	}
 	.time {
-		color: #222222;
 		text-align: right;
 		margin: auto 0 auto auto;
-	}
-	a {
-		text-decoration: none;
-		color: #222222;
+		a {
+			color: #777777;
+			text-decoration: none;
+		}
 	}
 }

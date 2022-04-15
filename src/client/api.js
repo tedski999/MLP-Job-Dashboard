@@ -1,11 +1,10 @@
 
 // Receive the entire requested data in one go.
-async function fetchJSON(url) {
+async function fetchJSON(url, init) {
 	try {
-		const response = await fetch(url + "&m=json");
+		const response = await fetch(url + "&m=json", init);
 		return await response.json();
 	} catch (err) {
-		alert("Error:", err);
 		return [];
 	}
 }
@@ -111,28 +110,40 @@ async function status(id) {
 }
 
 // Get a filterable list of alert destination settings
-async function alerts(topic, group, service, destination) {
-	return await fetchJSON(`/v1/alerts?t=${topic}&g=${group}&s=${service}&d=${destination}`);
+async function alerts(filters) {
+	let url = "/v1/alerts?";
+	if ("topic"       in filters) url += "&t=" + filters.topic;
+	if ("group"       in filters) url += "&g=" + filters.group;
+	if ("service"     in filters) url += "&s=" + filters.group;
+	if ("destination" in filters) url += "&d=" + filters.group;
+	return await fetchJSON(url);
 }
 
 // Set the service and destination of an alert
 async function setAlert(topic, group, service, destination) {
 	try {
+		if (topic === "" || group === "" || service === "" || destination === "")
+			throw new Error("Missing required fields!");
 		const response = await fetch("/v1/alerts", {
 			method: "POST",
-			body: JSON.stringify({ topic, group, service, destination }),
+			body: JSON.stringify({ topic: topic, group: group, service: service, destination: destination }),
 			headers: { "Content-Type": "application/json" }
 		});
 		return await response.json();
 	} catch (err) {
-		alert("Error:", err);
+		alert(err);
 		return [];
 	}
 }
 
 // Delete alert destination settings
-async function deleteAlerts(topic, group, service, destination) {
-	return await fetchJSON(`/v1/alerts?t=${topic}&g=${group}&s=${service}&d=${destination}`, {
+async function deleteAlerts(filters) {
+	let url = "/v1/alerts?";
+	if ("topic"       in filters) url += "&t=" + filters.topic;
+	if ("group"       in filters) url += "&g=" + filters.group;
+	if ("service"     in filters) url += "&s=" + filters.service;
+	if ("destination" in filters) url += "&d=" + filters.destination;
+	return await fetchJSON(url, {
 		method: "DELETE"
 	});
 }

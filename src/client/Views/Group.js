@@ -25,12 +25,13 @@ class Group extends React.Component {
 			topics: {},
 			executionTimes: {},
 			statuses: [],
-			loading: false,
+			loading: true,
 			aggregation: 1000*60*60*24,
 			filters: {
 				columns: "job_id,job_uid,created_on,completed_at,status_id,job_topic",
 				before: now,
-				after: threeMonthsAgo
+				after: threeMonthsAgo,
+				topic: ""
 			}
 		};
 
@@ -93,19 +94,6 @@ class Group extends React.Component {
 			loading={<p>Loading group jobs...</p>}
 		/>;
 
-		let series, options;
-
-		// Box plot
-		// TODO
-		const executionTimeOverTime = <p></p>;
-
-		// Pie chart
-		series = Object.values(this.state.topics);
-		options = {
-			labels: Object.keys(this.state.topics)
-		};
-		const topicsPieChart = <Chart type="pie" series={series} options={options} />;
-
 		let status = <p>Found {this.state.jobs.length} jobs belonging to group</p>;
 		if (this.state.jobs.length === 0) {
 			status = this.state.loading
@@ -121,14 +109,22 @@ class Group extends React.Component {
 				<br />
 				{filters}
 
-				<div className = "graphs">
-					<div className = "graph">
-						<h3>History</h3>
+				<div className="graphs">
+					<div className="graph">
+						<h2>History</h2>
 						{jobStatusesOverTime}
 					</div>
 					<div className = "graph">
-						<h3>Execution Times</h3>
-						{executionTimeOverTime}
+						<h2>Execution Times</h2>
+						<Chart type="boxPlot"
+							series={[{ data: Object.entries(this.state.executionTimes).map(e => ({x: e[0], y: e[1]})) }]}
+							options={{
+								chart: { animations: { enabled: false } },
+								tooltip: { x: { format: "dd MMM HH:mm" } },
+								xaxis: { type: "datetime" },
+								yaxis: { min: 0 }
+							}}
+						/>
 					</div>
 					<div className="graph">
 						<h2>Status</h2>
@@ -136,16 +132,20 @@ class Group extends React.Component {
 					</div>
 					<div className="graph">
 						<h2>Topics</h2>
-						{topicsPieChart}
+						<Chart
+							type="pie"
+							series={Object.values(this.state.topics)}
+							options={{ labels: Object.keys(this.state.topics) }}
+						/>
 					</div>
 				</div>
+
 				<div className = "recentJobs">
 					<h2>Recent Jobs</h2>
 					{jobList}
 				</div>
 			</div>
 		);
-
 	}
 }
 

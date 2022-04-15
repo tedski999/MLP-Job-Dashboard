@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS alert_settings (
 	group_name VARCHAR(255),
 	service VARCHAR(255) NOT NULL,
 	destination VARCHAR(255),
-	PRIMARY KEY (job_topic, group_name)
+	PRIMARY KEY (job_topic(100), group_name(100), service(100), destination)
 );
 
 LOAD DATA LOCAL INFILE '${jobStatusFile}'

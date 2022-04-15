@@ -25,12 +25,13 @@ class Topic extends React.Component {
 			groups: {},
 			executionTimes: {},
 			statuses: [],
-			loading: false,
+			loading: true,
 			aggregation: 1000*60*60*24,
 			filters: {
 				columns: "job_id,job_uid,created_on,completed_at,status_id,group_name",
 				before: now,
-				after: threeMonthsAgo
+				after: threeMonthsAgo,
+				group: ""
 			}
 		};
 
@@ -93,19 +94,6 @@ class Topic extends React.Component {
 			loading={<p>Loading topic jobs...</p>}
 		/>;
 
-		let series, options;
-
-		// Box plot
-		// TODO
-		const executionTimeOverTime = <p></p>;
-
-		// Pie chart
-		series = Object.values(this.state.groups);
-		options = {
-			labels: Object.keys(this.state.groups)
-		};
-		const groupsPieChart = <Chart type="pie" series={series} options={options} />;
-
 		let status = <p>Found {this.state.jobs.length} jobs belonging to topic</p>;
 		if (this.state.jobs.length === 0) {
 			status = this.state.loading
@@ -128,7 +116,15 @@ class Topic extends React.Component {
 					</div>
 					<div className = "graph">
 						<h3>Execution Times</h3>
-						{executionTimeOverTime}
+						<Chart type="boxPlot"
+							series={[{ data: Object.entries(this.state.executionTimes).map(e => ({x: e[0], y: e[1]})) }]}
+							options={{
+								chart: { animations: { enabled: false } },
+								tooltip: { x: { format: "dd MMM HH:mm" } },
+								xaxis: { type: "datetime" },
+								yaxis: { min: 0 }
+							}}
+						/>
 					</div>
 					<div className="graph">
 						<h2>Status</h2>
@@ -136,7 +132,11 @@ class Topic extends React.Component {
 					</div>
 					<div className="graph">
 						<h2>Groups</h2>
-						{groupsPieChart}
+						<Chart
+							type="pie"
+							series={Object.values(this.state.groups)}
+							options={{ labels: Object.keys(this.state.groups) }}
+						/>
 					</div>
 				</div>
 				<div className = "recentJobs">

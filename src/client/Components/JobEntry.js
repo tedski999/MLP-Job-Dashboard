@@ -16,7 +16,7 @@ class JobEntry extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			loading: false,
+			loading: true,
 			job: this.props.job
 		};
 	}
