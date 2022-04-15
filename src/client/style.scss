@@ -127,74 +127,17 @@ $white: #fff;
 	}
 }
 
-.job-page-container {
-	// body{
-	// 	margin: 0;
-	// }
-	// width: 100vw;
-	// height: 100vh;
-	display: grid;
-
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 80px 80px 480px ;
-
-	gap: 10px;
-	padding: 10px;
-	box-sizing: border-box;
-	.job-page-header{
-		// padding: 10px;
-		grid-column-start: 1;
-		grid-column-end: 4;
-		border: 1px solid #000;
-		.null-sub-status{
-			font-style: italic;
-		}
+.job-page {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 1em;
+	.header{
+		margin: 1em;
 	}
-	.job-page-warning-section{
-		padding: 10px;
-		grid-column-start: 1;
-		grid-column-end: 4;
-		border: 1px solid #000;
-		.status {
-			position: flex;
-			top: 2em;
-			left: 2.25em;
-			z-index: 1;
-			width: 2em;
-		}
-		
-	}
-	.job-page-payload-section{
-		padding: 10px;
-		grid-column-start: 1;
-		grid-column-end: 2;
-		border: 1px solid #000;
-		.empty-payload{
-			font-style: italic;
-		}
-	}
-	.job-page-timeline-section {
-		padding: 10px;
-		grid-column-start: 2;
-		grid-column-end: 3;
-		border: 1px solid #000;
-	}
-	.job-page-parentJobs-section{
-		padding: 10px;
-		grid-column-start: 3;
-		grid-column-end: 4;
-		border: 1px solid #000;
-
-	}
-
 }
 
-// .job-page-containr div {
-// 	border: 1px solid #000;
-// }
-
-.group-page-container,
-.topic-page-container{
+.group-page,
+.topic-page {
 	max-width: 1000px;
 	margin: 0 auto;
 	padding: 0 1em;
@@ -212,7 +155,7 @@ $white: #fff;
 	}
 }
 
-.dashboard-main-page-container {
+.dashboard-page {
 	max-width: 1000px;
 	margin: 0 auto;
 	padding: 0 1em;
@@ -225,12 +168,12 @@ $white: #fff;
 	}
 }
 
-.jobs-main-page-container{
+.jobs-page {
 	max-width: 1000px;
 	margin: 0 auto;
 }
 
-.jobs-list-entry {
+.job-entry {
 	display: flex;
 	margin: 1em;
 	padding: .5em;
@@ -238,6 +181,10 @@ $white: #fff;
 	border: 1px solid #cccccc;
 	border-radius: .5em;
 
+	a {
+		text-decoration: none;
+		color: #777777;
+	}
 	.icon {
 		position: relative;
 		.job {
@@ -254,8 +201,9 @@ $white: #fff;
 	.details {
 		color: #222222;
 		margin: auto auto auto 1em;
+		.topic { color: #222222; }
 		.uid { color: #777777; }
-		.topicgroup { color: #777777; }
+		.lower { color: #777777; }
 	}
 	.timestatus {
 		color: #222222;
@@ -263,14 +211,9 @@ $white: #fff;
 		margin: auto 0 auto auto;
 		.status { color: #777777; }
 	}
-	a {
-		text-decoration: none;
-		color: #222222;
-	}
 }
 
-.job-filter-toolbar {
-	margin: 1em 0;
+.job-filters {
 	.button {
 		cursor: pointer;
 		margin: .5em 0;
@@ -282,14 +225,14 @@ $white: #fff;
 	}
 }
 
-.groups-main-page-container,
-.topics-main-page-container{
+.groups-page,
+.topics-page {
 	max-width: 1000px;
 	margin: 0 auto;
 }
 
-.groups-list-entry,
-.topics-list-entry {
+.group-entry,
+.topic-entry {
 	display: flex;
 	margin: 1em;
 	padding: .5em;
@@ -298,6 +241,11 @@ $white: #fff;
 	border: 1px solid #cccccc;
 	border-radius: .5em;
 
+	.icon {
+		img {
+			width: 2.5em;
+		}
+	}
 	.details {
 		color: #222222;
 		margin: auto auto auto 1em;

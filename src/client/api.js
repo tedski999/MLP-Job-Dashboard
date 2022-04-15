@@ -100,7 +100,9 @@ async function topics(limit, pagingMethod) {
 
 // Get the full map between the IDs and names of job statuses
 async function statuses() {
-	return await fetchJSON("/v1/statuses");
+	const statuses = await fetchJSON("/v1/statuses?");
+	statuses.sort((a, b) => a.id - b.id);
+	return statuses.map(s => s.name);
 }
 
 // Get the corresponding name for a job status ID
@@ -135,9 +137,22 @@ async function deleteAlerts(topic, group, service, destination) {
 	});
 }
 
+// Easy function to stream in filtered job data
+async function loadJobs(statuses, filters, onNewJobs) {
+	await jobs(filters, newJobs => {
+		newJobs.forEach(job => {
+			job.status = job.status_id in statuses
+				? statuses[job.status_id]
+				: "Unknown";
+		});
+		onNewJobs(newJobs);
+	});
+}
+
 export default {
 	job, jobs,
 	groups, topics,
 	status, statuses,
-	alerts, setAlert, deleteAlerts
+	alerts, setAlert, deleteAlerts,
+	loadJobs
 };
