@@ -34,7 +34,9 @@ class ExecutionTimeOverTime extends React.Component {
 		this.setState({ loading: true, data: [] });
 
 		const data = [];
-		await api.jobs("created_on,completed_at", this.props.after.toISOString(), this.props.before.toISOString(), this.props.group, this.props.topic, this.props.status, 0, newJobs => {
+
+		const filters = { columns: "created_on,completed_at", after: this.props.after, before: this.props.before, group: this.props.group, topic: this.props.topic, status: this.props.status };
+		await api.jobs(filters, newJobs => {
 
 			newJobs.forEach(job => {
 				const date = new Date(job.created_on);

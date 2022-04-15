@@ -31,7 +31,8 @@ class StatusPieChart extends React.Component {
 	async fetchData() {
 		this.setState({ loading: true, data: [] });
 		const data = [ 0, 0, 0, 0, 0, 0, 0, 0 ];
-		await api.jobs("status_id", this.props.after.toISOString(), this.props.before.toISOString(), this.props.group, this.props.topic, this.props.status, 0, newJobs => {
+		const filters = { columns: "status_id", after: this.props.after, before: this.props.before, group: this.props.group, topic: this.props.topic, status: this.props.status };
+		await api.jobs(filters, newJobs => {
 			newJobs.forEach(job => { data[job.status_id] += 1; });
 			this.setState({ data: data });
 		});

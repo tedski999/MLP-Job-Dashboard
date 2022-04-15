@@ -61,12 +61,20 @@ async function job(id) {
 // - Passing in a function implies that the data should be streamed. See fetchStream for more info.
 // - A string is used to skip straight to a matching job_id and any later data. This is much faster than paging.
 // - Finally, a number is simply used as a paging index. The data will start from index of (limit * page).
-async function jobs(columns, after, before, group, topic, status, limit, pagingMethod) {
-	const url = `/v1/jobs?c=${columns}&a=${after}&b=${before}&g=${group}&t=${topic}&r=${status}&l=${limit}`;
+async function jobs(filters, pagingMethod) {
+	let url = "/v1/jobs?";
+	if ("columns" in filters) url += "&c=" + filters.columns;
+	if ("after"   in filters) url += "&a=" + filters.after.toISOString().substring(0, 10);
+	if ("before"  in filters) url += "&b=" + filters.before.toISOString().substring(0, 10);
+	if ("topic"   in filters) url += "&t=" + filters.topic;
+	if ("group"   in filters) url += "&g=" + filters.group;
+	if ("status"  in filters) url += "&r=" + filters.status;
+	if ("limit"   in filters) url += "&l=" + filters.limit;
 	switch (typeof pagingMethod) {
 	case "function": return await fetchStream(url, pagingMethod);
 	case "string": return await fetchJSON(url + "&s=" + pagingMethod);
 	case "number": return await fetchJSON(url + "&p=" + pagingMethod);
+	default: return await fetchJSON(url + "&p=" + 0);
 	}
 }
 

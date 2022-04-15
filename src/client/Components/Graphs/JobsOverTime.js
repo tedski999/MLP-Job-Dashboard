@@ -32,7 +32,8 @@ class JobsOverTime extends React.Component {
 
 	async fetchData() {
 		this.setState({ loading: true, dates: [] });
-		await api.jobs("created_on", this.props.after.toISOString(), this.props.before.toISOString(), this.props.group, this.props.topic, this.props.status, 0, newJobs => {
+		const filters = { columns: "created_on", after: this.props.after, before: this.props.before, group: this.props.group, topic: this.props.topic, status: this.props.status };
+		await api.jobs(filters, newJobs => {
 			const newDates = newJobs.map(job => {
 				const date = new Date(job.created_on);
 				switch (this.props.aggregation) {

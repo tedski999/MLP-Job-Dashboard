@@ -40,7 +40,8 @@ class StatusOverTime extends React.Component {
 		];
 
 		const data = [];
-		await api.jobs("created_on,status_id", this.props.after.toISOString(), this.props.before.toISOString(), this.props.group, this.props.topic, this.props.status, 0, newJobs => {
+		const filters = { columns: "created_on,status_id", after: this.props.after, before: this.props.before, group: this.props.group, topic: this.props.topic, status: this.props.status };
+		await api.jobs(filters, newJobs => {
 			newJobs.forEach(job => {
 				const date = new Date(job.created_on);
 				switch (this.props.aggregation) {

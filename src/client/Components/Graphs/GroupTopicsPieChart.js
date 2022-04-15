@@ -31,7 +31,9 @@ class GroupTopicsPieChart extends React.Component {
 	async fetchData() {
 		this.setState({ loading: true, data: {} });
 		const data = {};
-		await api.jobs("job_topic,group_name,status_id", this.props.after.toISOString(), this.props.before.toISOString(), this.props.group, this.props.topic, this.props.status, 0, newJobs => {
+
+		const filters = { columns: "job_topic,group_name,status_id", after: this.props.after, before: this.props.before, group: this.props.group, topic: this.props.topic, status: this.props.status };
+		await api.jobs(filters, newJobs => {
 			newJobs.forEach(job => {
 				const name = job.job_topic + " / " + job.group_name;
 				data[name] = data[name] + 1 || 1;

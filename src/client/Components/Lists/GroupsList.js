@@ -13,7 +13,8 @@ class GroupsList extends React.Component {
 	async fetchJobs() {
 		const len = this.state.jobs.length;
 		const seek = (len === 0) ? 0 : "" + this.state.jobs[len - 1].job_id;
-		const newJobs = await api.jobs("job_topic,group_name,created_on", "", "", "", "", "", 1000, seek);
+		const filters = { columns: "job_topic,group_name,created_on", limit: 1000 };
+		const newJobs = await api.jobs(filters, seek);
 		this.setState({ jobs: [...this.state.jobs, ...newJobs] });
 	}
 
