@@ -1,109 +1,68 @@
 import React from "react";
-// import { useParams } from "react-router-dom";
-import api from "../api";
-import WithRouter from "../Components/WithRouter";
-import NotFound from "./NotFound";
 import PropTypes from "prop-types";
-import SuccessIcon from "../Components/Lists/success.png";
-import FailureIcon from "../Components/Lists/failure.png";
-// export default async function Job() {
-// 	const { id } = useParams();
-// 	// const jobData = await api.jobs(id);
-// 	return (
-// 		<div>
-// 			<p>Job: {id}</p>
-// 		</div>
-// 	);
-// }
+import WithRouter from "../Components/WithRouter";
+//import JobEntry from "../Components/JobEntry";
+import api from "../api";
 
 class Job extends React.Component {
 	static propTypes = {
 		params: PropTypes.object.isRequired,
 	};
 
-	constructor(props){
+	constructor(props) {
 		super(props);
-		this.fetchJob = this.fetchJob.bind(this);
-		// const { id } = useParams();
 		this.state = {
-			jobData: null
+			id: this.props.params.id,
+			job: {},
+			statuses: [],
+			loading: true
 		};
-		this.fetchJob();
 	}
-	async fetchJob() {
-		const jobData = await api.job(this.props.params.id);
-		// const jobData = await api.job(this.state.id);
-		// console.log(JSON.stringify(jobData));
-		this.setState({ jobData: jobData });
+
+	async componentDidMount() {
+		this.setState({ loading: true, statuses: await api.statuses() });
+		const job = await api.job(this.state.id);
+		this.setState({ loading: false, job: job });
 	}
 
 	render() {
-		if(this.state.jobData === null){
-			return <div>Loading...</div>;
-		}
-		const statusmap = [
-			"Created", "Read",
-			"Acknowledged", "Successful",
-			"Failed", "TimedOut", "Retried", "Cancelled"
-		];
-		const status = statusmap[this.state.jobData.status_id];
-		if(this.state.jobData === undefined){
-			// return <p>Not Found</p>;
-			return <NotFound/>;
-		}
-		// if(this.state.jobData.job_sub_status === null) { 
-		// 	return <div>HI</div>;
-		// }
-		const pageStructure = (
-			
-			<div className="job-page-container">
-				{/* <h1>Job: {this.state.jobData.job_number}</h1>
-				<span># {this.state.jobData.job_uid}</span>
-				<div>
-					<h1> Payload </h1>
-				</div> */}
-				<div className="job-page-header"> 
-					<h1>Job: {/*this.state.jobData.job_number*/this.state.jobData.job_topic } </h1>
-					<span># {this.state.jobData.job_number} </span>
-					<p># {this.state.jobData.job_uid} </p>
-					<div>
-						{this.state.jobData.job_sub_status === null && <p className = "null-sub-status"> No Sub Status</p> || 
-						<p>{this.state.jobData.job_sub_status}</p>}
-					</div>
-				</div>
-				<div className = "job-page-warning-section"> 
-					<div>
-						{this.state.jobData.status_id > 3 && <p><img className="status" src={FailureIcon} />  Jobs {status}</p> || 
-						<p> <img className="status" src={SuccessIcon} /> Jobs {status}</p>}
-					</div>
-				</div>
-				<div className = "job-page-payload-section"> 
-					<h3>Payload</h3>
-					{/* <div>ADD PAYLOAD</div> */}
-					<div> { ("definition" in this.state.jobData) && <p>this.state.jobData.definition</p> || 
-					<p className="empty-payload">Empty Payload</p> } </div>
-				</div>
-				<div className = "job-page-timeline-section"> 
-					<h3>Time Line</h3>
-					<div>ADD TIMELINE</div>
-				</div>
-				<div className = "job-page-parentJobs-section"> 
-					<h3>Parent Jobs</h3>
-					<div>ADD PARENT JOBS</div>
-				</div>
-			</div>
 
-		);
-		// console.log(JSON.stringify(this.state.jobData));
-		return (
-			<div>
-				{/* {JSON.stringify(this.state.jobData)}; */}
-				{/* Use job number as job name */}
-				{/* {this.state.jobData.job_number}; */}
-				{pageStructure}
-			</div>
-		);
+		const job = this.state.job;
+
+		if (job === {}) {
+			const status = this.state.loading
+				? <p>Loading job data...</p>
+				: <p>Job not found!</p>;
+			return (
+				<div className="job-page">
+					<br />
+					<h1>Job: #{job.job_uid}</h1>
+					{status}
+				</div>
+			);
+		} else {
+
+			const status = this.state.statuses[job.status_id];
+
+			return (
+				<div className="job-page">
+					<br />
+					<h1>Job: #{job.job_uid}</h1>
+					<span>Number #{job.job_number}</span>
+					<br />
+					{status}
+					{job.job_sub_status === null && <p className = "null-sub-status"> No Sub Status</p> || 
+						<p>{job.job_sub_status}</p>}
+					<div>
+						<h2>Payload</h2>
+						<div> { ("definition" in job) && <p>{job.definition}</p> || 
+						<p className="empty-payload">Empty Payload</p> } </div>
+					</div>
+					{/*TODO: execution time, parent job, timeline */}
+				</div>
+			);
+		}
 	}
 }
 
-export default WithRouter(Job) ;
+export default WithRouter(Job);

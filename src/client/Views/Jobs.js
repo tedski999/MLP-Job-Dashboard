@@ -1,6 +1,8 @@
 import React from "react";
-import JobsList from "../Components/Lists/JobsList";
-import JobsFilter from "../Components/JobFilterToolbar";
+import InfiniteList from "../Components/InfiniteList";
+import JobEntry from "../Components/JobEntry";
+import Filters from "../Components/Filters";
+import api from "../api";
 
 class Jobs extends React.Component {
 
@@ -8,42 +10,58 @@ class Jobs extends React.Component {
 		super(props);
 		const now = new Date();
 		const threeMonthsAgo = new Date(now - 1000*60*60*24*30*3);
-		this.updateFilter = this.updateFilter.bind(this);
 		this.state = {
-			after: threeMonthsAgo,
-			before: now,
-			group: "",
-			topic: "",
-			status: ""
+			jobs: [],
+			statuses: [],
+			loading: true,
+			filters: {
+				attributes: "job_id,job_uid,status_id",
+				before: now,
+				after: threeMonthsAgo,
+				topic: "",
+				group: "",
+			}
 		};
+
+		this.load = this.load.bind(this);
 	}
 
-	updateFilter(after, before, group, topic, status) {
-		this.setState({ after, before, group, topic, status });
+	async componentDidMount() {
+		this.setState({ statuses: await api.statuses() });
+		this.load(this.state.filters);
+	}
+
+	async load(filters) {
+		this.setState({ filters: filters, jobs: [], loading: true });
+		await api.loadJobs(this.state.statuses, filters, newJobs => {
+			this.setState({ jobs: [...this.state.jobs, ...newJobs] });
+		});
+		this.setState({ loading: false });
 	}
 
 	render() {
-		const key = this.state.after+this.state.before+this.state.group+this.state.topic+this.state.status;
+		const filters = <Filters filters={this.state.filters} update={this.load} />;
+		const list = <InfiniteList
+			list={this.state.jobs}
+			render={job => <JobEntry job={job} />}
+			loading={<p>Loading jobs...</p>}
+		/>;
+
+		let status = <p>Found {this.state.jobs.length} jobs</p>;
+		if (this.state.jobs.length === 0) {
+			status = this.state.loading
+				? <p>Searching for job metrics...</p>
+				: <p>No jobs found! Maybe try changing your filters?</p>;
+		}
+
 		return (
-			<div className="jobs-main-page-container">
+			<div className="jobs-page">
 				<br />
-				<h1>Automation Jobs</h1>
-				<JobsFilter
-					onChange={this.updateFilter}
-					after={this.state.after}
-					before={this.state.before}
-					group={this.state.group}
-					topic={this.state.topic}
-					status={this.state.status}
-				/>
-				<JobsList
-					key={key}
-					after={new Date(this.state.after)}
-					before={new Date(this.state.before)}
-					group={this.state.group}
-					topic={this.state.topic}
-					status={this.state.status}
-				/>
+				<h1>Recent Automation Jobs</h1>
+				{status}
+				<br />
+				{filters}
+				{list}
 			</div>
 		);
 	}
